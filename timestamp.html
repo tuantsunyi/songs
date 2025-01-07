@@ -10,11 +10,22 @@
             font-size: 18px;
             white-space: pre-wrap;
         }
+        #controls {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>YouTube Video with Timestamps</h1>
+
+    <div id="controls">
+        <input type="text" id="video-url" placeholder="Enter YouTube URL" style="width: 300px;">
+        <button id="load-video">Load Video</button>
+    </div>
+
     <div id="player"></div>
+    <button id="clear-timestamps">Clear Timestamps</button>
+
     <div id="timestamps">Timestamps: </div>
 
     <script src="https://www.youtube.com/iframe_api"></script>
@@ -26,18 +37,45 @@
             player = new YT.Player('player', {
                 height: '360',
                 width: '640',
-                videoId: 'oSc_BgWzw_0', // Replace with your YouTube video ID
+                videoId: '', // Default empty, will load based on user input
                 playerVars: {
                     playsinline: 1
                 }
             });
         }
 
+        // Load new video
+        document.getElementById('load-video').addEventListener('click', () => {
+            const videoUrl = document.getElementById('video-url').value;
+            const videoId = extractVideoId(videoUrl);
+
+            if (videoId) {
+                player.loadVideoById(videoId);
+                clearTimestamps();
+            } else {
+                alert('Invalid YouTube URL.');
+            }
+        });
+
+        // Extract video ID from YouTube URL
+        function extractVideoId(url) {
+            const match = url.match(/(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/) ||
+                          url.match(/(?:https?:\/\/)?(?:www\.)?youtu\.be\/([a-zA-Z0-9_-]+)/);
+            return match ? match[1] : null;
+        }
+
+        // Clear timestamps
+        function clearTimestamps() {
+            document.getElementById('timestamps').textContent = 'Timestamps: ';
+        }
+
+        document.getElementById('clear-timestamps').addEventListener('click', clearTimestamps);
+
         // Detect space key and log timestamp
         document.addEventListener('keydown', (event) => {
             if (event.code === 'Space') {
                 event.preventDefault(); // Prevent scrolling
-                const currentTime = player.getCurrentTime().toFixed(2);
+                const currentTime = Math.floor(player.getCurrentTime());
                 const timestampsDiv = document.getElementById('timestamps');
                 timestampsDiv.textContent += `${currentTime} `;
             }
