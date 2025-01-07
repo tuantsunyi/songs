@@ -138,6 +138,7 @@
             if (activeLine && activeLine !== currentLine) {
                 if (currentLine) currentLine.classList.remove('active-line');
                 activeLine.classList.add('active-line');
+                scrollToActiveLine(activeLine); // Scroll to the active line
                 currentLine = activeLine;
             }
         }
@@ -167,6 +168,18 @@
                 player.pauseVideo(); // Pause the video
             }
         });
+        // Function to scroll the active lyric into view
+        function scrollToActiveLine(activeLine) {
+            const topOffset = window.innerHeight / 2; // Calculate the middle of the page
+            const lineRect = activeLine.getBoundingClientRect(); // Get line's position
+            const scrollY = window.scrollY + lineRect.top - topOffset;
+
+            window.scrollTo({
+            top: scrollY,
+            behavior: 'smooth' // Smooth scrolling for better UX
+        });
+}
+
     </script>
 </body>
 </html>
