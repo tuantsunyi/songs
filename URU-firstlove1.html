@@ -12,7 +12,7 @@
             cursor: pointer;
             margin: 5px 0;
             font-size: 20px;
-            text-align: center; /* Centers the text horizontally */
+            padding-left: 50px; /* Pushes the text to the right */
         }
         .lyrics-line:hover {
             color: blue;
@@ -94,8 +94,8 @@
         // YouTube IFrame API initialization
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
-                height: '360',
-                width: '640',
+                height: '288',
+                width: '512',
                 videoId: 'oSc_BgWzw_0', // Replace with your video ID
                 playerVars: { playsinline: 1 },
                 events: {
