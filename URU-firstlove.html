@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uru - ファーストラヴ" (First Love)</title>
+    <style>
+        .lyrics-line {
+            cursor: pointer;
+            margin: 5px 0;
+            font-size: 18px;
+        }
+        .lyrics-line:hover {
+            color: blue;
+            text-decoration: underline;
+        }
+        .active-line {
+            color: red;
+            font-weight: bold;
+        }
+        #pause-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #pause-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Uru - ファーストラヴ" (First Love)</h1>
+    <div id="player"></div>
+    <div id="lyrics">
+<p class="lyrics-line" data-time="22">絡（から）まって 解（と）けない 糾纏在一起無法解開  </p>
+<p class="lyrics-line" data-time="28">糸みたいに</p>
+<p class="lyrics-line" data-time="35">時が経っていくほど</p>
+<p class="lyrics-line" data-time="40">硬く脆くなっていく</p>
+<p class="lyrics-line" data-time="48">ひび割れたままの記憶</p>
+<p class="lyrics-line" data-time="53">片付けることもできずに</p>
+<p class="lyrics-line" data-time="61">綺麗な服を纏って</p>
+<p class="lyrics-line" data-time="65">全て忘れたふりをしていた</p>
+<p class="lyrics-line" data-time="72">きっとこのまま誰も愛さない</p>
+<p class="lyrics-line" data-time="79">誰にも愛されないと</p>
+<p class="lyrics-line" data-time="85">胸の奥ヒリヒリ痛む度に</p>
+<p class="lyrics-line" data-time="92">うずくまって そう呟いていた</p>
+<p class="lyrics-line" data-time="101">幸せを願うことさえ怖くて</p>
+<p class="lyrics-line" data-time="108">泣き方もわからずに怯えていた</p>
+<p class="lyrics-line" data-time="114">肩を抱く誰かの温もりに</p>
+<p class="lyrics-line" data-time="121">顔を上げると そこにあなたがいた</p>
+<p class="lyrics-line" data-time="127">その腕の中聴こえてきた音は</p>
+<p class="lyrics-line" data-time="133">とても優しく温かい音でした</p>
+<p class="lyrics-line" data-time="140">一つずつ心が解けていく</p>
+<p class="lyrics-line" data-time="146">あなたと出逢い</p>
+<p class="lyrics-line" data-time="150">初めて愛を 知りました</p>
+<p class="lyrics-line" data-time="155">music....</p>
+<p class="lyrics-line" data-time="166">拭っても 払えない</p>
+<p class="lyrics-line" data-time="172">悪い夢みたいに</p>
+<p class="lyrics-line" data-time="180">まだどこかにある陰に</p>
+<p class="lyrics-line" data-time="184">きっとあなたは気づいていた</p>
+<p class="lyrics-line" data-time="191">いびつに微笑んだ私の</p>
+<p class="lyrics-line" data-time="198">瞳の奥を見つめて</p>
+<p class="lyrics-line" data-time="204">何も言わずに強く抱きしめた</p>
+<p class="lyrics-line" data-time="210">全てを包み込むように</p>
+<p class="lyrics-line" data-time="219">幸せを願うことさえ怖くて</p>
+<p class="lyrics-line" data-time="226">泣き方もわからずに怯えていた</p>
+<p class="lyrics-line" data-time="232">「ここから先は一緒にいこう」と</p>
+<p class="lyrics-line" data-time="239">繋いだ手を 握り直して</p>
+<p class="lyrics-line" data-time="245">手を引いて歩くあなたの隣で</p>
+<p class="lyrics-line" data-time="252">見えた景色はとても綺麗でした</p>
+<p class="lyrics-line" data-time="258">一つずつ心を結んでいく</p>
+<p class="lyrics-line" data-time="265">あなたと出逢い</p>
+<p class="lyrics-line" data-time="268">初めて愛を 知りました</p>
+
+    </div>
+
+    <!-- Pause Button -->
+    <button id="pause-button">Pause</button>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        let player;
+        let currentLine = null;
+
+        // YouTube IFrame API initialization
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '360',
+                width: '640',
+                videoId: 'oSc_BgWzw_0', // Replace with your video ID
+                playerVars: { playsinline: 1 },
+                events: {
+                    onStateChange: onPlayerStateChange
+                }
+            });
+        }
+
+        // Function to highlight the active lyric line
+        function highlightLyric(currentTime) {
+            const lines = document.querySelectorAll('.lyrics-line');
+            let activeLine = null;
+
+            lines.forEach(line => {
+                const startTime = parseInt(line.getAttribute('data-time'), 10);
+                const nextLine = line.nextElementSibling;
+                const endTime = nextLine ? parseInt(nextLine.getAttribute('data-time'), 10) : Number.MAX_SAFE_INTEGER;
+
+                if (currentTime >= startTime && currentTime < endTime) {
+                    activeLine = line;
+                }
+            });
+
+            if (activeLine && activeLine !== currentLine) {
+                if (currentLine) currentLine.classList.remove('active-line');
+                activeLine.classList.add('active-line');
+                currentLine = activeLine;
+            }
+        }
+
+        // Monitor video playback and update the active lyric
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+                setInterval(() => {
+                    const currentTime = player.getCurrentTime();
+                    highlightLyric(currentTime);
+                }, 500); // Check every 500ms
+            }
+        }
+
+        // Add click event listeners to lyrics
+        document.querySelectorAll('.lyrics-line').forEach(line => {
+            line.addEventListener('click', function () {
+                const time = parseInt(this.getAttribute('data-time'), 10);
+                player.seekTo(time, true); // Jump to the specified time
+                player.playVideo(); // Start playing the video
+            });
+        });
+
+        // Pause button functionality
+        document.getElementById('pause-button').addEventListener('click', function () {
+            if (player) {
+                player.pauseVideo(); // Pause the video
+            }
+        });
+    </script>
+</body>
+</html>
