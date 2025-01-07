@@ -14,7 +14,7 @@
         }
         .lyrics-line {
             cursor: pointer;
-            margin: 5px 0;
+            margin: 1px 0;
             font-size: 16px;
             padding-left: 10px; /* Pushes the text to the right */
         }
@@ -25,10 +25,10 @@
             color: blue;
             text-decoration: underline;
         }
-        .active-line {
-            color: red;
-            font-weight: bold;
-        }
+/*        .active-line { */
+/*           color: red; */
+/*           font-weight: bold; */
+/*      } */
         #pauseButton {
             position: fixed;
             bottom: 20px;
@@ -39,7 +39,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 12px;
         }
         #pauseButton:hover {
             background-color: #0056b3;
@@ -47,7 +47,7 @@
         #player {
             position: fixed; /* Change from absolute to fixed */
             top: 10px; /* Adjust to stay near the top of the page */
-            padding-left: 10px;
+            padding-left: 5px;
             /*transform: translateX(-50%); */ /* Center alignment */
             z-index: 1000; /* Ensure it stays on top of other elements */
         }
@@ -59,49 +59,49 @@
     <div id="player" style="margin-bottom: 20px;"></div>
     <div id="lyrics">
 
-<p class="lyrics-line" data-time="22"><ruby>絡<rt>から</rt></ruby>まって<ruby>解<rt>ほと</rt></ruby>けない<span style="display: inline-block; margin-left: 30px; color:green; font-size: 62%;">糾纏在一起無法解開</span></p>
-<p class="lyrics-line" data-time="28"><ruby>糸<rt>いと</rt></ruby>みたいに<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">像一條線般</span></p>
-<p class="lyrics-line" data-time="35"><ruby>時<rt>とき</rt></ruby>が<ruby>経<rt>た</rt></ruby>っていくほど<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">隨著時間流逝</span></p>
-<p class="lyrics-line" data-time="40"><ruby>硬<rt>かた</rt></ruby>く<ruby>脆<rt>もろ</rt></ruby>くなっていく<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">變得又硬又脆弱</span></p>
-<p class="lyrics-line" data-time="48">ひび<ruby>割<rt>わ</rt></ruby>れたままの<ruby>記憶<rt>きおく</rt></ruby><span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">裂痕未癒的記憶</span></p>
-<p class="lyrics-line" data-time="53"><ruby>片付<rt>かたづ</rt></ruby>けることもできずに<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">無法收拾好</span></p>
-<p class="lyrics-line" data-time="61"><ruby>綺麗<rt>きれい</rt></ruby>な<ruby>服<rt>ふく</rt></ruby>を<ruby>纏<rt>まと</rt></ruby>って<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">穿上漂亮的衣服</span></p>
-<p class="lyrics-line" data-time="65"><ruby>全<rt>すべ</rt></ruby>て<ruby>忘<rt>わす</rt></ruby>れたふりをしていた<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">假裝忘記一切</span></p>
-<p class="lyrics-line" data-time="72"><ruby>きっとこのまま<ruby>誰<rt>だれ</rt></ruby>も<ruby>愛<rt>あい</rt></ruby>さない<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">一定不再愛任何人</span></p>
-<p class="lyrics-line" data-time="79"><ruby>誰<rt>だれ</rt></ruby>にも<ruby>愛<rt>あい</rt></ruby>されないと<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">也不被任何人所愛</span></p>
-<p class="lyrics-line" data-time="85"><ruby>胸<rt>むね</rt></ruby>の<ruby>奥<rt>おく</rt></ruby>ヒリヒリ<ruby>痛<rt>いた</rt></ruby>む<ruby>度<rt>たび</rt></ruby>に<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">胸口深處每次刺痛時</span></p>
-<p class="lyrics-line" data-time="92">うずくまって そう<ruby>呟<rt>つぶや</rt></ruby>いていた<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">蜷縮著這樣低聲自語</span></p>
-<p class="lyrics-line" data-time="101"><ruby>幸<rt>しあわ</rt></ruby>せを<ruby>願<rt>ねが</rt></ruby>うことさえ<ruby>怖<rt>こわ</rt></ruby>くて<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">連祈求幸福都感到害怕</span></p>
-<p class="lyrics-line" data-time="108"><ruby>泣<rt>な</rt></ruby>き<ruby>方<rt>かた</rt></ruby>もわからずに<ruby>怯<rt>おび</rt></ruby>えていた<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">連哭泣的方法都不懂，害怕著</span></p>
-<p class="lyrics-line" data-time="114"><ruby>肩<rt>かた</rt></ruby>を<ruby>抱<rt>だ</rt></ruby>く<ruby>誰<rt>だれ</rt></ruby>かの<ruby>温<rt>ぬく</rt></ruby>もりに<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">感受某人擁抱的溫暖</span></p>
-<p class="lyrics-line" data-time="121"><ruby>顔<rt>かお</rt></ruby>を<ruby>上<rt>あ</rt></ruby>げると そこにあなたがいた<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">抬頭看見你就在那裡</span></p>
-<p class="lyrics-line" data-time="127"><ruby>その腕<rt>うで</rt></ruby>の中<ruby>聴<rt>き</rt></ruby>こえてきた<ruby>音<rt>おと</rt></ruby>は<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">在那臂彎中聽到的聲音</span></p>
-<p class="lyrics-line" data-time="133">とても<ruby>優<rt>やさ</rt></ruby>しく<ruby>温<rt>あたた</rt></ruby>かい<ruby>音<rt>おと</rt></ruby>でした<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">是非常溫柔而溫暖的聲音</span></p>
-<p class="lyrics-line" data-time="140"><ruby>一<rt>ひと</rt></ruby>つずつ<ruby>心<rt>こころ</rt></ruby>が<ruby>解<rt>と</rt></ruby>けていく<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">一點一點地解開了心結</span></p>
-<p class="lyrics-line" data-time="146">あなたと<ruby>出逢<rt>であ</rt></ruby>い<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">與你相遇</span></p>
-<p class="lyrics-line" data-time="150"><ruby>初<rt>はじ</rt></ruby>めて<ruby>愛<rt>あい</rt></ruby>を<ruby>知<rt>し</rt></ruby>りました<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">第一次知道了愛</span></p>
-<p class="lyrics-line" data-time="155">music....<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">音樂....</span></p>
-<p class="lyrics-line" data-time="166"><ruby>拭<rt>ぬぐ</rt></ruby>っても<ruby>払<rt>はら</rt></ruby>えない<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">即使擦拭也無法消除</span></p>
-<p class="lyrics-line" data-time="172"><ruby>悪<rt>わる</rt></ruby>い<ruby>夢<rt>ゆめ</rt></ruby>みたいに<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">像一場惡夢般</span></p>
-<p class="lyrics-line" data-time="180"><ruby>まだどこかにある<ruby>陰<rt>かげ</rt></ruby>に<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">依然藏在某個角落的陰影裡</span></p>
-<p class="lyrics-line" data-time="184">きっとあなたは<ruby>気<rt>き</rt></ruby>づいていた<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">你一定早就察覺到了</span></p>
-<p class="lyrics-line" data-time="191"><ruby>いびつ<ruby>微笑<rt>ほほえ</rt></ruby>んだ<ruby>私<rt>わたし</rt></ruby>の<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">扭曲地微笑的我的</span></p>
-<p class="lyrics-line" data-time="198"><ruby>瞳<rt>ひとみ</rt></ruby>の<ruby>奥<rt>おく</rt></ruby>を<ruby>見<rt>み</rt></ruby>つめて<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">凝視著我的眼瞳深處</span></p>
-<p class="lyrics-line" data-time="204"><ruby>何<rt>なに</rt></ruby>も<ruby>言<rt>い</rt></ruby>わずに<ruby>強<rt>つよ</rt></ruby>く<ruby>抱<rt>だ</rt></ruby>きしめた<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">什麼都沒說，只是緊緊擁抱</span></p>
-<p class="lyrics-line" data-time="210"><ruby>全<rt>すべ</rt></ruby>てを<ruby>包<rt>つつ</rt></ruby>み<ruby>込<rt>こ</rt></ruby>むように<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">彷彿要包容一切般</span></p>
-<p class="lyrics-line" data-time="219"><ruby>幸<rt>しあわ</rt></ruby>せを<ruby>願<rt>ねが</rt></ruby>うことさえ<ruby>怖<rt>こわ</rt></ruby>くて<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">連祈求幸福都感到害怕</span></p>
-<p class="lyrics-line" data-time="226"><ruby>泣<rt>な</rt></ruby>き<ruby>方<rt>かた</rt></ruby>もわからずに<ruby>怯<rt>おび</rt></ruby>えていた<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">連哭泣的方法都不懂，害怕著</span></p>
-<p class="lyrics-line" data-time="232">「ここから<ruby>先<rt>さき</rt></ruby>は<ruby>一緒<rt>いっしょ</rt></ruby>にいこう」と<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">「從這裡開始一起走吧」</span></p>
-<p class="lyrics-line" data-time="239"><ruby>繋<rt>つな</rt></ruby>いだ<ruby>手<rt>て</rt></ruby>を<ruby>握<rt>にぎ</rt></ruby>り<ruby>直<rt>なお</rt></ruby>して<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">重新緊握牽起的手</span></p>
-<p class="lyrics-line" data-time="245"><ruby>手<rt>て</rt></ruby>を<ruby>引<rt>ひ</rt></ruby>いて<ruby>歩<rt>ある</rt></ruby>くあなたの<ruby>隣<rt>となり</rt></ruby>で<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">牽著手走在你身旁</span></p>
-<p class="lyrics-line" data-time="252"><ruby>見<rt>み</rt></ruby>えた<ruby>景色<rt>けしき</rt></ruby>はとても<ruby>綺麗<rt>きれい</rt></ruby>でした<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">所看到的景色非常美麗</span></p>
-<p class="lyrics-line" data-time="258"><ruby>一<rt>ひと</rt></ruby>つずつ<ruby>心<rt>こころ</rt></ruby>を<ruby>結<rt>むす</rt></ruby>んでいく<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">一點一點地將心連結起來</span></p>
-<p class="lyrics-line" data-time="265">あなたと<ruby>出逢<rt>であ</rt></ruby>い<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">與你相遇</span></p>
-<p class="lyrics-line" data-time="268"><ruby>初<rt>はじ</rt></ruby>めて<ruby>愛<rt>あい</rt></ruby>を<ruby>知<rt>し</rt></ruby>りました<span style="display:inline-block; margin-left:30px; color:green; font-size:62%;">第一次知道了愛</span></p>
+<p class="lyrics-line" data-time="22"><ruby>絡<rt>から</rt></ruby>まって<ruby>解<rt>ほと</rt></ruby>けない<span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">糾纏在一起無法解開</span></p>
+<p class="lyrics-line" data-time="28"><ruby>糸<rt>いと</rt></ruby>みたいに<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">像一條線般</span></p>
+<p class="lyrics-line" data-time="35"><ruby>時<rt>とき</rt></ruby>が<ruby>経<rt>た</rt></ruby>っていくほど<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">隨著時間流逝</span></p>
+<p class="lyrics-line" data-time="40"><ruby>硬<rt>かた</rt></ruby>く<ruby>脆<rt>もろ</rt></ruby>くなっていく<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">變得又硬又脆弱</span></p>
+<p class="lyrics-line" data-time="48">ひび<ruby>割<rt>わ</rt></ruby>れたままの<ruby>記憶<rt>きおく</rt></ruby><span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">裂痕未癒的記憶</span></p>
+<p class="lyrics-line" data-time="53"><ruby>片付<rt>かたづ</rt></ruby>けることもできずに<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">無法收拾好</span></p>
+<p class="lyrics-line" data-time="61"><ruby>綺麗<rt>きれい</rt></ruby>な<ruby>服<rt>ふく</rt></ruby>を<ruby>纏<rt>まと</rt></ruby>って<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">穿上漂亮的衣服</span></p>
+<p class="lyrics-line" data-time="65"><ruby>全<rt>すべ</rt></ruby>て<ruby>忘<rt>わす</rt></ruby>れたふりをしていた<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">假裝忘記一切</span></p>
+<p class="lyrics-line" data-time="72"><ruby>きっとこのまま<ruby>誰<rt>だれ</rt></ruby>も<ruby>愛<rt>あい</rt></ruby>さない<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">一定不再愛任何人</span></p>
+<p class="lyrics-line" data-time="79"><ruby>誰<rt>だれ</rt></ruby>にも<ruby>愛<rt>あい</rt></ruby>されないと<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">也不被任何人所愛</span></p>
+<p class="lyrics-line" data-time="85"><ruby>胸<rt>むね</rt></ruby>の<ruby>奥<rt>おく</rt></ruby>ヒリヒリ<ruby>痛<rt>いた</rt></ruby>む<ruby>度<rt>たび</rt></ruby>に<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">胸口深處每次刺痛時</span></p>
+<p class="lyrics-line" data-time="92">うずくまって そう<ruby>呟<rt>つぶや</rt></ruby>いていた<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">蜷縮著這樣低聲自語</span></p>
+<p class="lyrics-line" data-time="101"><ruby>幸<rt>しあわ</rt></ruby>せを<ruby>願<rt>ねが</rt></ruby>うことさえ<ruby>怖<rt>こわ</rt></ruby>くて<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">連祈求幸福都感到害怕</span></p>
+<p class="lyrics-line" data-time="108"><ruby>泣<rt>な</rt></ruby>き<ruby>方<rt>かた</rt></ruby>もわからずに<ruby>怯<rt>おび</rt></ruby>えていた<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">連哭泣的方法都不懂，害怕著</span></p>
+<p class="lyrics-line" data-time="114"><ruby>肩<rt>かた</rt></ruby>を<ruby>抱<rt>だ</rt></ruby>く<ruby>誰<rt>だれ</rt></ruby>かの<ruby>温<rt>ぬく</rt></ruby>もりに<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">感受某人擁抱的溫暖</span></p>
+<p class="lyrics-line" data-time="121"><ruby>顔<rt>かお</rt></ruby>を<ruby>上<rt>あ</rt></ruby>げると そこにあなたがいた<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">抬頭看見你就在那裡</span></p>
+<p class="lyrics-line" data-time="127"><ruby>その腕<rt>うで</rt></ruby>の中<ruby>聴<rt>き</rt></ruby>こえてきた<ruby>音<rt>おと</rt></ruby>は<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">在那臂彎中聽到的聲音</span></p>
+<p class="lyrics-line" data-time="133">とても<ruby>優<rt>やさ</rt></ruby>しく<ruby>温<rt>あたた</rt></ruby>かい<ruby>音<rt>おと</rt></ruby>でした<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">是非常溫柔而溫暖的聲音</span></p>
+<p class="lyrics-line" data-time="140"><ruby>一<rt>ひと</rt></ruby>つずつ<ruby>心<rt>こころ</rt></ruby>が<ruby>解<rt>と</rt></ruby>けていく<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">一點一點地解開了心結</span></p>
+<p class="lyrics-line" data-time="146">あなたと<ruby>出逢<rt>であ</rt></ruby>い<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">與你相遇</span></p>
+<p class="lyrics-line" data-time="150"><ruby>初<rt>はじ</rt></ruby>めて<ruby>愛<rt>あい</rt></ruby>を<ruby>知<rt>し</rt></ruby>りました<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">第一次知道了愛</span></p>
+<p class="lyrics-line" data-time="155">music....<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">音樂....</span></p>
+<p class="lyrics-line" data-time="166"><ruby>拭<rt>ぬぐ</rt></ruby>っても<ruby>払<rt>はら</rt></ruby>えない<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">即使擦拭也無法消除</span></p>
+<p class="lyrics-line" data-time="172"><ruby>悪<rt>わる</rt></ruby>い<ruby>夢<rt>ゆめ</rt></ruby>みたいに<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">像一場惡夢般</span></p>
+<p class="lyrics-line" data-time="180"><ruby>まだ<ruby>どこかにある<ruby>陰<rt>かげ</rt></ruby>に<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">依然藏在某個角落的陰影裡</span></p>
+<p class="lyrics-line" data-time="184">きっとあなたは<ruby>気<rt>き</rt></ruby>づいていた<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">你一定早就察覺到了</span></p>
+<p class="lyrics-line" data-time="191"><ruby>いびつ<ruby>微笑<rt>ほほえ</rt></ruby>んだ<ruby>私<rt>わたし</rt></ruby>の<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">扭曲地微笑的我的</span></p>
+<p class="lyrics-line" data-time="198"><ruby>瞳<rt>ひとみ</rt></ruby>の<ruby>奥<rt>おく</rt></ruby>を<ruby>見<rt>み</rt></ruby>つめて<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">凝視著我的眼瞳深處</span></p>
+<p class="lyrics-line" data-time="204"><ruby>何<rt>なに</rt></ruby>も<ruby>言<rt>い</rt></ruby>わずに<ruby>強<rt>つよ</rt></ruby>く<ruby>抱<rt>だ</rt></ruby>きしめた<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">什麼都沒說，只是緊緊擁抱</span></p>
+<p class="lyrics-line" data-time="210"><ruby>全<rt>すべ</rt></ruby>てを<ruby>包<rt>つつ</rt></ruby>み<ruby>込<rt>こ</rt></ruby>むように<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">彷彿要包容一切般</span></p>
+<p class="lyrics-line" data-time="219"><ruby>幸<rt>しあわ</rt></ruby>せを<ruby>願<rt>ねが</rt></ruby>うことさえ<ruby>怖<rt>こわ</rt></ruby>くて<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">連祈求幸福都感到害怕</span></p>
+<p class="lyrics-line" data-time="226"><ruby>泣<rt>な</rt></ruby>き<ruby>方<rt>かた</rt></ruby>もわからずに<ruby>怯<rt>おび</rt></ruby>えていた<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">連哭泣的方法都不懂，害怕著</span></p>
+<p class="lyrics-line" data-time="232">「ここから<ruby>先<rt>さき</rt></ruby>は<ruby>一緒<rt>いっしょ</rt></ruby>にいこう」と<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">「從這裡開始一起走吧」</span></p>
+<p class="lyrics-line" data-time="239"><ruby>繋<rt>つな</rt></ruby>いだ<ruby>手<rt>て</rt></ruby>を<ruby>握<rt>にぎ</rt></ruby>り<ruby>直<rt>なお</rt></ruby>して<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">重新緊握牽起的手</span></p>
+<p class="lyrics-line" data-time="245"><ruby>手<rt>て</rt></ruby>を<ruby>引<rt>ひ</rt></ruby>いて<ruby>歩<rt>ある</rt></ruby>くあなた的<ruby>隣<rt>となり</rt></ruby>で<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">牽著手走在你身旁</span></p>
+<p class="lyrics-line" data-time="252"><ruby>見<rt>み</rt></ruby>えた<ruby>景色<rt>けしき</rt></ruby>はとても<ruby>綺麗<rt>きれい</rt></ruby>でした<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">所看到的景色非常美麗</span></p>
+<p class="lyrics-line" data-time="258"><ruby>一<rt>ひと</rt></ruby>つずつ<ruby>心<rt>こころ</rt></ruby>を<ruby>結<rt>むす</rt></ruby>んでいく<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">一點一點地將心連結起來</span></p>
+<p class="lyrics-line" data-time="265">あなたと<ruby>出逢<rt>であ</rt></ruby>い<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">與你相遇</span></p>
+<p class="lyrics-line" data-time="268"><ruby>初<rt>はじ</rt></ruby>めて<ruby>愛<rt>あい</rt></ruby>を<ruby>知<rt>し</rt></ruby>りました<span style="display:inline-block; margin-left:5px; color:green; font-size:54%;">第一次知道了愛</span></p>
 
         <!-- Add more lyrics as needed -->
     </div>
-    <button id="pauseButton">Pause Video</button>
+    <button id="pauseButton">Pause</button>
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
         let player;
