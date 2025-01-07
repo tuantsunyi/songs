@@ -8,6 +8,10 @@
         body {
             font-family: Arial, sans-serif;
         }
+        h1 {
+            margin-top: 210px; /* Adjust the value as needed */
+            text-align: center; /* Optional: Align the title to the center */
+        }
         .lyrics-line {
             cursor: pointer;
             margin: 5px 0;
@@ -43,7 +47,7 @@
         #player {
             position: fixed; /* Change from absolute to fixed */
             top: 10px; /* Adjust to stay near the top of the page */
-            padding-left: 100px;
+            padding-left: 30px;
             /*transform: translateX(-50%); */ /* Center alignment */
             z-index: 1000; /* Ensure it stays on top of other elements */
         }
@@ -105,8 +109,8 @@
         // YouTube IFrame API initialization
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
-                height: '225',
-                width: '400',
+                height: '198',
+                width: '352',
                 videoId: 'oSc_BgWzw_0', // Replace with your video ID
                 playerVars: { playsinline: 1 },
                 events: {
