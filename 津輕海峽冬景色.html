@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>津軽海峡 冬景色</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            margin-top: 210px; /* Adjust the value as needed */
+            padding-left: 5px; /* Pushes the text to the right */
+            font-size: 24px;
+        }
+        .lyrics-line {
+            cursor: pointer;
+            margin: 1px 0;
+            font-size: 16px;
+            padding-left: 10px; /* Pushes the text to the right */
+        }
+        .lyrics-line:first-of-type {
+            margin-top: 10px; /* Adds vertical space before the first line */
+        }
+/*        .lyrics-line:hover {
+            color: blue;
+            text-decoration: underline;
+        } */
+       .active-line {
+           color: red;
+           font-weight: bold;
+       }
+        #pauseButton {
+            position: fixed;
+            bottom: 20px;
+            right: 5px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        #pauseButton:hover {
+            background-color: #0056b3;
+        }
+        #player {
+            position: fixed; /* Change from absolute to fixed */
+            top: 10px; /* Adjust to stay near the top of the page */
+            padding-left: 5px;
+            /*transform: translateX(-50%); */ /* Center alignment */
+            z-index: 1000; /* Ensure it stays on top of other elements */
+        }
+    }
+    </style>
+</head>
+<body>
+    <h1>津軽海峡 冬景色</h1>
+    <div id="player" style="margin-bottom: 20px;"></div>
+    <div id="lyrics">
+
+<p class="lyrics-line" data-time="21"> <ruby>上野<rt>うえの</rt></ruby><ruby>発<rt>はつ</rt></ruby>の <ruby>夜行<rt>やこう</rt></ruby><ruby>列車<rt>れっしゃ</rt></ruby> おりた<ruby>時<rt>とき</rt></ruby>から <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">從上野發的夜行列車下車開始</span></p>
+<p class="lyrics-line" data-time="27"> <ruby>青森<rt>あおもり</rt></ruby><ruby>駅<rt>えき</rt></ruby>は <ruby>雪<rt>ゆき</rt></ruby>の<ruby>中<rt>なか</rt></ruby> <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">青森車站在雪中</span></p>
+<p class="lyrics-line" data-time="33"> <ruby>北<rt>きた</rt></ruby>へ<ruby>帰<rt>かえ</rt></ruby>る <ruby>人<rt>ひと</rt></ruby>の<ruby>群<rt>む</rt></ruby>れは <ruby>誰<rt>だれ</rt></ruby>も<ruby>無口<rt>むくち</rt></ruby>で <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">北上歸鄉的人群中無人說話</span></p>
+<p class="lyrics-line" data-time="38"> <ruby>海鳴<rt>うみな</rt></ruby>りだけを <ruby>聞<rt>き</rt></ruby>いている <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">只聽見海潮聲</span></p>
+<p class="lyrics-line" data-time="44"> <ruby>私<rt>わたし</rt></ruby>も <ruby>ひとり<rt>獨自</rt></ruby> <ruby>連絡船<rt>れんらくせん</rt></ruby>に<ruby>乗<rt>の</rt></ruby>り <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">我也獨自乘上渡船</span></p>
+<p class="lyrics-line" data-time="55"> <ruby>こご<rt>凍</rt></ruby>えそうな<ruby>鴎<rt>かもめ</rt></ruby> <ruby>見<rt>み</rt></ruby>つめ <ruby>泣<rt>な</rt></ruby>いていました <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">凝視著快要凍僵的海鷗哭泣</span></p>
+<p class="lyrics-line" data-time="61"> ああ <ruby>津軽海峡<rt>つがるかいきょう</rt></ruby> <ruby>冬景色<rt>ふゆげしき</rt></ruby> <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">啊 津輕海峽的冬日風景</span></p>
+<p class="lyrics-line" data-time="73"> music <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">音樂</span></p>
+<p class="lyrics-line" data-time="96"> <ruby>ご覧<rt>ごらん</rt></ruby> あれが<ruby>竜飛岬<rt>たっぴみさき</rt></ruby> <ruby>北<rt>きた</rt></ruby>のはずれと <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">看，那就是龍飛岬北端</span></p>
+<p class="lyrics-line" data-time="102"> <ruby>見知<rt>みし</rt></ruby>らぬ<ruby>人<rt>ひと</rt></ruby>が <ruby>指<rt>ゆび</rt></ruby>をさす <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">陌生人指著那裡</span></p>
+<p class="lyrics-line" data-time="108"> <ruby>息<rt>いき</rt></ruby>でくもる <ruby>窓<rt>まど</rt></ruby>の<ruby>ガラス<rt>玻璃</rt></ruby> ふいてみたけど <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">試著擦拭被呼吸模糊的玻璃</span></p>
+<p class="lyrics-line" data-time="114"> <ruby>はるか<rt>遥遠</rt></ruby>に かすみ<ruby>見<rt>み</rt></ruby>えるだけ <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">只見到遠處的薄霧</span></p>
+<p class="lyrics-line" data-time="119"> <ruby>さよなら<rt>再見</rt></ruby> <ruby>あなた<rt>妳</rt></ruby> <ruby>私<rt>わたし</rt></ruby>は<ruby>帰<rt>かえ</rt></ruby>ります <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">再見，我要回去了</span></p>
+<p class="lyrics-line" data-time="131"> <ruby>風<rt>かぜ</rt></ruby>の<ruby>音<rt>おと</rt></ruby>が <ruby>胸<rt>むね</rt></ruby>をゆする <ruby>泣<rt>な</rt></ruby>けとばかりに <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">風聲震撼胸口，仿佛要我哭泣</span></p>
+<p class="lyrics-line" data-time="136"> ああ <ruby>津軽海峡<rt>つがるかいきょう</rt></ruby> <ruby>冬景色<rt>ふゆげしき</rt></ruby> <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">啊 津輕海峽的冬日風景</span></p>
+<p class="lyrics-line" data-time="148"> music <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">音樂</span></p>
+
+
+        <!-- Add more lyrics as needed -->
+    </div>
+    <button id="pauseButton">Pause</button>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        let player;
+        let currentLine = null;
+
+        // YouTube IFrame API initialization
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '198',
+                width: '352',
+                videoId: 'XACZLijLkZQ', // Replace with your video ID
+                playerVars: { playsinline: 1 },
+                events: {
+                    onStateChange: onPlayerStateChange
+                }
+            });
+        }
+
+        // Function to highlight the active lyric line
+        function highlightLyric(currentTime) {
+            const lines = document.querySelectorAll('.lyrics-line');
+            let activeLine = null;
+
+            lines.forEach(line => {
+                const startTime = parseInt(line.getAttribute('data-time'), 10);
+                const nextLine = line.nextElementSibling;
+                const endTime = nextLine ? parseInt(nextLine.getAttribute('data-time'), 10) : Number.MAX_SAFE_INTEGER;
+
+                if (currentTime >= startTime && currentTime < endTime) {
+                    activeLine = line;
+                }
+            });
+
+            if (activeLine && activeLine !== currentLine) {
+                if (currentLine) currentLine.classList.remove('active-line');
+                activeLine.classList.add('active-line');
+                scrollToActiveLine(activeLine); // Scroll to the active line
+                currentLine = activeLine;
+            }
+        }
+
+        // Monitor video playback and update the active lyric
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+                setInterval(() => {
+                    const currentTime = player.getCurrentTime();
+                    highlightLyric(currentTime);
+                }, 500); // Check every 500ms
+            }
+        }
+
+        // Add click event listeners to lyrics
+        document.querySelectorAll('.lyrics-line').forEach(line => {
+            line.addEventListener('click', function () {
+                const time = parseInt(this.getAttribute('data-time'), 10);
+                player.seekTo(time, true); // Jump to the specified time
+                player.playVideo(); // Start playing the video
+            });
+        });
+
+        // Add event listener to pause button
+        document.getElementById('pauseButton').addEventListener('click', function () {
+            if (player) {
+                player.pauseVideo(); // Pause the video
+            }
+        });
+        // Function to scroll the active lyric into view
+        function scrollToActiveLine(activeLine) {
+            const topOffset = window.innerHeight / 2; // Calculate the middle of the page
+            const lineRect = activeLine.getBoundingClientRect(); // Get line's position
+            const scrollY = window.scrollY + lineRect.top - topOffset;
+
+            window.scrollTo({
+            top: scrollY,
+            behavior: 'smooth' // Smooth scrolling for better UX
+        });
+}
+
+    </script>
+</body>
+</html>
