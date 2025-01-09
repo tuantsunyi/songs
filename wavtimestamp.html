@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAV Player with Timestamps</title>
+    <style>
+        #timestamps {
+            margin-top: 20px;
+            font-size: 18px;
+            white-space: pre-wrap;
+        }
+        #controls {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>WAV Player with Timestamps</h1>
+
+    <div id="controls">
+        <audio id="wav-player" controls>
+            <source src="https://tuantsunyi.github.io/songs/WAV/Tsugaru.wav" type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+    <button id="clear-timestamps">Clear Timestamps</button>
+
+    <div id="timestamps">Timestamps (microseconds): </div>
+
+    <script>
+        const audioPlayer = document.getElementById('wav-player');
+        const timestampsDiv = document.getElementById('timestamps');
+
+        // Clear timestamps
+        function clearTimestamps() {
+            timestampsDiv.textContent = 'Timestamps (microseconds): ';
+        }
+        document.getElementById('clear-timestamps').addEventListener('click', clearTimestamps);
+
+        // Log timestamp when space key is pressed
+        document.addEventListener('keydown', (event) => {
+            if (event.code === 'Space') {
+                event.preventDefault(); // Prevent scrolling
+
+                // Get the current playback time in microseconds
+                const currentTimeMicroseconds = Math.floor(audioPlayer.currentTime * 1000000);
+
+                // Append the timestamp to the timestamps section
+                timestampsDiv.textContent += `${currentTimeMicroseconds} `;
+            }
+        });
+    </script>
+</body>
+</html>
