@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read 津軽海峡冬景色</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            margin-top: 20px;
+            padding-left: 5px;
+            font-size: 24px;
+        }
+        .lyrics-line {
+            cursor: pointer;
+            margin: 1px 0;
+            font-size: 16px;
+            padding-left: 10px;
+        }
+        .active-line {
+            color: red;
+            font-weight: bold;
+        }
+        #pauseButton {
+            position: fixed;
+            bottom: 20px;
+            right: 5px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        #pauseButton:hover {
+            background-color: #0056b3;
+        }
+        #player {
+            position: fixed;
+            top: 10px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <h1>津軽海峡 冬景色</h1>
+    <div id="player">
+        <audio id="audioPlayer" controls>
+            <source src="https://tuantsunyi.github.io/songs/WAV/Tsugaru.wav" type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+    <div id="lyrics">
+        <p class="lyrics-line" data-time="1000"> <ruby>上野<rt>うえの</rt></ruby>(0) <ruby>発<rt>はつ</rt></ruby>(1) の <ruby>夜行<rt>やこう</rt></ruby>(0) <ruby>列車<rt>れっしゃ</rt></ruby>(1) おりた <ruby>時<rt>とき</rt></ruby>(0) から <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">從上野發的夜行列車下車開始</span></p>
+        <p class="lyrics-line" data-time="5000"> <ruby>青森<rt>あおもり</rt></ruby>(0) <ruby>駅<rt>えき</rt></ruby>(1) は <ruby>雪<rt>ゆき</rt></ruby>(1) の <ruby>中<rt>なか</rt></ruby>(0) <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">青森車站在雪中</span></p>
+        <!-- Add remaining lyrics -->
+    </div>
+    <button id="pauseButton">Pause</button>
+    <script>
+        const audioPlayer = document.getElementById('audioPlayer');
+        const lines = document.querySelectorAll('.lyrics-line');
+        let currentLine = null;
+
+        // Ensure the audio player is ready before interacting with it
+        audioPlayer.addEventListener('canplaythrough', () => {
+            console.log("Audio file is ready to play.");
+        });
+
+        // Highlight the active lyric based on the current time
+        audioPlayer.addEventListener('timeupdate', () => {
+            const currentTime = audioPlayer.currentTime * 1000; // Convert to milliseconds
+            highlightLyric(currentTime);
+        });
+
+        function highlightLyric(currentTime) {
+            let activeLine = null;
+
+            lines.forEach(line => {
+                const startTime = parseInt(line.getAttribute('data-time'), 10);
+                const nextLine = line.nextElementSibling;
+                const endTime = nextLine ? parseInt(nextLine.getAttribute('data-time'), 10) : Number.MAX_SAFE_INTEGER;
+
+                if (currentTime >= startTime && currentTime < endTime) {
+                    activeLine = line;
+                }
+            });
+
+            if (activeLine && activeLine !== currentLine) {
+                if (currentLine) currentLine.classList.remove('active-line');
+                activeLine.classList.add('active-line');
+                currentLine = activeLine;
+            }
+        }
+
+        // Seek to specific time when a line is clicked
+        lines.forEach(line => {
+            line.addEventListener('click', function () {
+                const time = parseInt(this.getAttribute('data-time'), 10);
+                audioPlayer.currentTime = time / 1000; // Convert milliseconds to seconds
+                audioPlayer.play();
+            });
+        });
+
+        // Pause the audio when the button is clicked
+        document.getElementById('pauseButton').addEventListener('click', () => {
+            audioPlayer.pause();
+        });
+    </script>
+</body>
+</html>
