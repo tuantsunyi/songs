@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play 津軽海峡冬景色</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            margin-top: 20px;
+            padding-left: 5px;
+            font-size: 24px;
+        }
+        #player {
+            position: fixed;
+            top: 10px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <h1>津軽海峡 冬景色</h1>
+    <div id="player">
+        <audio id="audioPlayer" controls>
+            <source src="https://tuantsunyi.github.io/songs/WAV/Tsugaru.wav" type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+    <script>
+        // Automatically start playing the WAV file when the page loads
+        const audioPlayer = document.getElementById('audioPlayer');
+
+        // Wait for the audio metadata to load before playing
+        audioPlayer.addEventListener('loadedmetadata', () => {
+            console.log("Audio metadata loaded. Starting playback...");
+            audioPlayer.play();
+        });
+
+        // Optional: Log when the audio starts playing
+        audioPlayer.addEventListener('play', () => {
+            console.log("Audio is playing.");
+        });
+    </script>
+</body>
+</html>
