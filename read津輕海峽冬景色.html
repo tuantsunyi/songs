@@ -54,8 +54,8 @@
         </audio>
     </div>
     <div id="lyrics">
-        <p class="lyrics-line" data-time="21000"> <ruby>上野<rt>うえの</rt></ruby>(0) <ruby>発<rt>はつ</rt></ruby>(1) の <ruby>夜行<rt>やこう</rt></ruby>(0) <ruby>列車<rt>れっしゃ</rt></ruby>(1) おりた <ruby>時<rt>とき</rt></ruby>(0) から <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">從上野發的夜行列車下車開始</span></p>
-        <p class="lyrics-line" data-time="27000"> <ruby>青森<rt>あおもり</rt></ruby>(0) <ruby>駅<rt>えき</rt></ruby>(1) は <ruby>雪<rt>ゆき</rt></ruby>(1) の <ruby>中<rt>なか</rt></ruby>(0) <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">青森車站在雪中</span></p>
+        <p class="lyrics-line" data-time="21"> <ruby>上野<rt>うえの</rt></ruby>(0) <ruby>発<rt>はつ</rt></ruby>(1) の <ruby>夜行<rt>やこう</rt></ruby>(0) <ruby>列車<rt>れっしゃ</rt></ruby>(1) おりた <ruby>時<rt>とき</rt></ruby>(0) から <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">從上野發的夜行列車下車開始</span></p>
+        <p class="lyrics-line" data-time="27"> <ruby>青森<rt>あおもり</rt></ruby>(0) <ruby>駅<rt>えき</rt></ruby>(1) は <ruby>雪<rt>ゆき</rt></ruby>(1) の <ruby>中<rt>なか</rt></ruby>(0) <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">青森車站在雪中</span></p>
         <!-- Add remaining lyrics -->
     </div>
     <button id="pauseButton">Pause</button>
@@ -71,7 +71,7 @@
 
         // Highlight the active lyric based on the current time
         audioPlayer.addEventListener('timeupdate', () => {
-            const currentTime = audioPlayer.currentTime * 1000; // Convert to milliseconds
+            const currentTime = audioPlayer.currentTime; // Use time in seconds directly
             highlightLyric(currentTime);
         });
 
@@ -79,9 +79,9 @@
             let activeLine = null;
 
             lines.forEach(line => {
-                const startTime = parseInt(line.getAttribute('data-time'), 10);
+                const startTime = parseFloat(line.getAttribute('data-time')); // Time in seconds
                 const nextLine = line.nextElementSibling;
-                const endTime = nextLine ? parseInt(nextLine.getAttribute('data-time'), 10) : Number.MAX_SAFE_INTEGER;
+                const endTime = nextLine ? parseFloat(nextLine.getAttribute('data-time')) : Number.MAX_SAFE_INTEGER;
 
                 if (currentTime >= startTime && currentTime < endTime) {
                     activeLine = line;
@@ -98,8 +98,8 @@
         // Seek to specific time when a line is clicked
         lines.forEach(line => {
             line.addEventListener('click', function () {
-                const time = parseInt(this.getAttribute('data-time'), 10);
-                audioPlayer.currentTime = time / 1000; // Convert milliseconds to seconds
+                const time = parseFloat(this.getAttribute('data-time')); // Time in seconds
+                audioPlayer.currentTime = time; // Set the audio to the specific time
                 audioPlayer.play();
             });
         });
