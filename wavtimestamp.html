@@ -26,7 +26,7 @@
     </div>
     <button id="clear-timestamps">Clear Timestamps</button>
 
-    <div id="timestamps">Timestamps (microseconds): </div>
+    <div id="timestamps">Timestamps (milliseconds): </div>
 
     <script>
         const audioPlayer = document.getElementById('wav-player');
@@ -34,7 +34,7 @@
 
         // Clear timestamps
         function clearTimestamps() {
-            timestampsDiv.textContent = 'Timestamps (microseconds): ';
+            timestampsDiv.textContent = 'Timestamps (milliseconds): ';
         }
         document.getElementById('clear-timestamps').addEventListener('click', clearTimestamps);
 
@@ -43,11 +43,11 @@
             if (event.code === 'Space') {
                 event.preventDefault(); // Prevent scrolling
 
-                // Get the current playback time in microseconds
-                const currentTimeMicroseconds = Math.floor(audioPlayer.currentTime * 1000000);
+                // Get the current playback time in milliseconds
+                const currentTimeMilliseconds = Math.floor(audioPlayer.currentTime * 1000);
 
                 // Append the timestamp to the timestamps section
-                timestampsDiv.textContent += `${currentTimeMicroseconds} `;
+                timestampsDiv.textContent += `${currentTimeMilliseconds} `;
             }
         });
     </script>
