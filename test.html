@@ -81,6 +81,12 @@
         .back-to-top a:hover {
             text-decoration: underline;
         }
+        #controls {
+            margin: 20px 0;
+        }
+        #speed-control {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -90,6 +96,17 @@
             <source src="https://tuantsunyi.github.io/songs/WAV/Tsugaru.wav" type="audio/wav">
             Your browser does not support the audio element.
         </audio>
+    </div>
+        <div id="speed-control">
+        <label for="playback-rate">Playback Speed:</label>
+        <select id="playback-rate">
+            <option value="0.5">0.5x</option>
+            <option value="0.75">0.75x</option>
+            <option value="1" selected>Normal (1x)</option>
+            <option value="1.25">1.25x</option>
+            <option value="1.5">1.5x</option>
+            <option value="2">2x</option>
+        </select>
     </div>
     <div id="lyrics">
 <p class="lyrics-line" data-time="0"> <ruby>上野<rt>うえの</rt></ruby><sub>2</sub> <ruby>発<rt>はつ</rt></ruby><sub>1</sub> の <ruby>夜行<rt>やこう</rt></ruby><sub>0</sub> <ruby>列車<rt>れっしゃ</rt></ruby><sub>1</sub> おりた <ruby>時<rt>とき</rt></ruby><sub>0</sub> から <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">從上野發的夜行列車下車開始</span></p>
@@ -371,6 +388,12 @@
         // Pause the audio when the button is clicked
         document.getElementById('pauseButton').addEventListener('click', () => {
             audioPlayer.pause();
+        });
+
+        // Update playback speed when the user changes the dropdown
+        playbackRateSelector.addEventListener('change', () => {
+            const selectedSpeed = parseFloat(playbackRateSelector.value);
+            audioPlayer.playbackRate = selectedSpeed;
         });
     </script>
 </body>
