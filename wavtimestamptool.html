@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAV Player with Timestamps</title>
+    <style>
+        #url-input {
+            margin-bottom: 20px;
+        }
+        #timestamps {
+            margin-top: 20px;
+            font-size: 18px;
+            white-space: pre-wrap;
+        }
+        #controls {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>WAV Player with Timestamps</h1>
+
+    <!-- URL Input Section -->
+    <div id="url-input">
+        URL: <input type="text" id="wav-url" placeholder="Enter WAV file URL here" size="50">
+        <button id="load-wav">Load WAV</button>
+    </div>
+
+    <!-- Audio Player Section -->
+    <div id="controls">
+        <audio id="wav-player" controls>
+            <source id="audio-source" src="https://tuantsunyi.github.io/songs/WAV/Tsugaru.wav" type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <button id="clear-timestamps">Clear Timestamps</button>
+
+    <div id="timestamps">Timestamps (milliseconds): </div>
+
+    <script>
+        const audioPlayer = document.getElementById('wav-player');
+        const audioSource = document.getElementById('audio-source');
+        const timestampsDiv = document.getElementById('timestamps');
+        const loadWavButton = document.getElementById('load-wav');
+        const wavUrlInput = document.getElementById('wav-url');
+
+        // Clear timestamps
+        function clearTimestamps() {
+            timestampsDiv.textContent = 'Timestamps (milliseconds): ';
+        }
+        document.getElementById('clear-timestamps').addEventListener('click', clearTimestamps);
+
+        // Load WAV from input URL
+        loadWavButton.addEventListener('click', () => {
+            const newUrl = wavUrlInput.value.trim();
+            if (newUrl) {
+                audioSource.src = newUrl;
+                audioPlayer.load();
+                clearTimestamps(); // Clear previous timestamps when a new file is loaded
+            } else {
+                alert('Please enter a valid URL.');
+            }
+        });
+
+        // Log timestamp when space key is pressed
+        document.addEventListener('keydown', (event) => {
+            if (event.code === 'Space') {
+                event.preventDefault(); // Prevent scrolling
+
+                // Get the current playback time in milliseconds
+                const currentTimeMilliseconds = Math.floor(audioPlayer.currentTime * 1000);
+
+                // Append the timestamp to the timestamps section
+                timestampsDiv.textContent += `${currentTimeMilliseconds} `;
+            }
+        });
+    </script>
+</body>
+</html>
+
