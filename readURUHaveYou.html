@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Uru – あなたがいることで</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            margin-top: 80px;
+            padding-left: 5px;
+            font-size: 24px;
+        }
+        .lyrics-line {
+            cursor: pointer;
+            margin: 1px 0;
+            font-size: 16px;
+            padding-left: 10px;
+        }
+        .lyrics-line:first-of-type {
+            margin-top: 10px; /* Adds vertical space before the first line */
+        }
+        .active-line {
+            color: red;
+            font-weight: bold;
+        }
+        #pauseButton {
+            position: fixed;
+            bottom: 20px;
+            right: 5px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        #pauseButton:hover {
+            background-color: #0056b3;
+        }
+        #player {
+            position: fixed;
+            top: 10px;
+            z-index: 1000;
+        }
+        .section-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .analysis-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        .subsection-title {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .toc {
+            border: 1px solid #aaa;
+            padding: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 20px;
+        }
+        .toc a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+        .back-to-top {
+            text-align: right;
+            margin-top: 20px;
+        }
+        .back-to-top a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        .back-to-top a:hover {
+            text-decoration: underline;
+        }
+        #controls {
+            margin: 20px 0;
+        }
+        #speed-control {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Uru – あなたがいることで</h1>
+    <div id="player">
+        <audio id="audioPlayer" controls>
+            <source src="https://tuantsunyi.github.io/songs/WAV/URUHaveYou.wav" type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+        <div id="speed-control">
+        <label for="playback-rate">Playback Speed:</label>
+        <select id="playback-rate">
+            <option value="0.6">0.5x</option>
+            <option value="0.7">0.75x</option>
+            <option value="1" selected>Normal (1x)</option>
+            <option value="1.25">1.25x</option>
+            <option value="1.5">1.5x</option>
+            <option value="2">2x</option>
+        </select>
+    </div>
+    <div id="lyrics">
+<p class="lyrics-line" data-time="0"> <ruby>どんな<rt>どんな</rt></ruby><sub>0</sub> <ruby>言葉<rt>ことば</rt></ruby><sub>0</sub>で <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">用什麼樣的詞語</span></p>
+<p class="lyrics-line" data-time="1509"> <ruby>今<rt>いま</rt></ruby><sub>0</sub> <ruby>あなた<rt>あなた</rt></ruby><sub>0</sub>に <ruby>伝<rt>つた</rt></ruby><sub>1</sub>えられる <ruby>だろう<rt>だろう</rt></ruby><sub>0</sub> <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">現在我該如何傳達給你</span></p>
+<p class="lyrics-line" data-time="4278"> <ruby>不器用<rt>ぶきよう</rt></ruby><sub>0</sub>な <ruby>僕<rt>ぼく</rt></ruby><sub>0</sub> <ruby>だけど<rt>だけど</rt></ruby><sub>0</sub> <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">雖然我笨拙</span></p>
+<p class="lyrics-line" data-time="6369"> <ruby>ちゃんと<rt>ちゃんと</rt></ruby><sub>0</sub> <ruby>あなた<rt>あなた</rt></ruby><sub>0</sub>に <ruby>届<rt>とど</rt></ruby><sub>1</sub>く <ruby>よう<rt>よう</rt></ruby><sub>0</sub>に <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">但會好好地傳達給你</span></p>
+<p class="lyrics-line" data-time="8960"> <ruby>明日<rt>あした</rt></ruby><sub>2</sub>が <ruby>見<rt>み</rt></ruby><sub>0</sub>えなく <ruby>なって<rt>なって</rt></ruby><sub>0</sub> <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">當看不到明天</span></p>
+<p class="lyrics-line" data-time="11148"> <ruby>信<rt>しん</rt></ruby><sub>1</sub>じる <ruby>こと<rt>こと</rt></ruby><sub>0</sub>が <ruby>怖<rt>こわ</rt></ruby><sub>0</sub>く <ruby>なって<rt>なって</rt></ruby><sub>0</sub> <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">當感到害怕去相信</span></p>
+<p class="lyrics-line" data-time="13928"> <ruby>過去<rt>かこ</rt></ruby><sub>1</sub>を <ruby>悔<rt>く</rt></ruby><sub>1</sub>やんで <ruby>は<rt>は</rt></ruby><sub>0</sub> <ruby>責<rt>せ</rt></ruby><sub>0</sub>めたり <ruby>も<rt>も</rt></ruby><sub>0</sub> <ruby>した<rt>した</rt></ruby><sub>0</sub>けれど <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">後悔過去並責備自己</span></p>
+<p class="lyrics-line" data-time="17497"> <ruby>僕<rt>ぼく</rt></ruby><sub>0</sub>を <ruby>愛<rt>あい</rt></ruby><sub>1</sub>し <ruby>続<rt>つづ</rt></ruby><sub>1</sub>けて <ruby>くれた<rt>くれた</rt></ruby><sub>0</sub> <ruby>人<rt>ひと</rt></ruby><sub>0</sub> <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">愛著我的人</span></p>
+<p class="lyrics-line" data-time="20289"> <ruby>もしも<rt>もしも</rt></ruby><sub>0</sub> <ruby>明日<rt>あした</rt></ruby><sub>2</sub> <ruby>世界<rt>せかい</rt></ruby><sub>0</sub>が <ruby>終<rt>お</rt></ruby><sub>0</sub>わって <ruby>も<rt>も</rt></ruby><sub>0</sub> <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">假如明天世界終結</span></p>
+<p class="lyrics-line" data-time="23168"> <ruby>会<rt>あ</rt></ruby><sub>0</sub>えない <ruby>日々<rt>ひび</rt></ruby><sub>0</sub>が <ruby>続<rt>つづ</rt></ruby><sub>1</sub>いたと <ruby>して<rt>して</rt></ruby><sub>0</sub>も <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">即使無法見面的日子持續下去</span></p>
+<p class="lyrics-line" data-time="26037"> <ruby>僕<rt>ぼく</rt></ruby><sub>0</sub>は <ruby>ずっと<rt>ずっと</rt></ruby><sub>0</sub> <ruby>あなた<rt>あなた</rt></ruby><sub>0</sub>を <ruby>想<rt>おも</rt></ruby><sub>0</sub>うよ <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">我會一直思念著你</span></p>
+<p class="lyrics-line" data-time="28839"> <ruby>あの日<rt>あのひ</rt></ruby><sub>0</sub> <ruby>僕<rt>ぼく</rt></ruby><sub>0</sub>に <ruby>くれた<rt>くれた</rt></ruby><sub>0</sub> <ruby>あなた<rt>あなた</rt></ruby><sub>0</sub>の <ruby>笑顔<rt>えがお</rt></ruby><sub>1</sub>が <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">那一天你給我的笑容</span></p>
+<p class="lyrics-line" data-time="32045"> <ruby>生<rt>い</rt></ruby><sub>0</sub>きる <ruby>力<rt>ちから</rt></ruby><sub>1</sub>と <ruby>勇気<rt>ゆうき</rt></ruby><sub>1</sub>を <ruby>くれた<rt>くれた</rt></ruby><sub>0</sub>んだ <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">給予了我生存的力量和勇氣</span></p>
+<p class="lyrics-line" data-time="34996"> <ruby>星<rt>ほし</rt></ruby><sub>1</sub>が <ruby>見<rt>み</rt></ruby><sub>0</sub>えない <ruby>孤独<rt>こどく</rt></ruby><sub>0</sub>な <ruby>夜<rt>よる</rt></ruby><sub>0</sub>でも <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">即使是無法看到星星的孤獨夜晚</span></p>
+<p class="lyrics-line" data-time="37968"> <ruby>あなた<rt>あなた</rt></ruby><sub>0</sub>が <ruby>いる<rt>いる</rt></ruby><sub>0</sub> <strong>ただ</strong> <ruby>それ<rt>それ</rt></ruby><sub>0</sub>だけ <ruby>で<rt>で</rt></ruby><sub>0</sub> <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">只要有你在</span></p>
+<p class="lyrics-line" data-time="40622"> <ruby>強<rt>つよ</rt></ruby><sub>1</sub>く <ruby>なれる<rt>なれる</rt></ruby><sub>0</sub> <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">我就能變得堅強</span></p>
+<p class="lyrics-line" data-time="42161"> <ruby>目<rt>め</rt></ruby><sub>0</sub>が <ruby>合<rt>あ</rt></ruby><sub>0</sub>えば <ruby>笑<rt>わら</rt></ruby><sub>1</sub>って <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">四目相對時便微笑</span></p>
+<p class="lyrics-line" data-time="44148"> <ruby>一緒<rt>いっしょ</rt></ruby><sub>0</sub>に <ruby>いれば<rt>いれば</rt></ruby><sub>0</sub> <ruby>楽<rt>たの</rt></ruby><sub>1</sub>しくて <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">在一起時總是快樂</span></p>
+<p class="lyrics-line" data-time="46488"> <ruby>共<rt>とも</rt></ruby><sub>1</sub>に <ruby>過<rt>す</rt></ruby><sub>0</sub>ごした <ruby>毎日<rt>まいにち</rt></ruby><sub>0</sub>は <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">共同度過的每一天</span></p>
+<p class="lyrics-line" data-time="49069"> <ruby>かけがえ<rt>かけがえ</rt></ruby><sub>0</sub>の <ruby>ない<rt>ない</rt></ruby><sub>0</sub> <ruby>もの<rt>もの</rt></ruby><sub>0</sub>だった <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">是無可取代的存在</span></p>
+<p class="lyrics-line" data-time="51683"> <ruby>向<rt>む</rt></ruby><sub>0</sub>かい <ruby>風<rt>かぜ</rt></ruby><sub>0</sub>が <ruby>冷<rt>つめ</rt></ruby><sub>1</sub>たくて <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">迎面的風很冷</span></p>
+<p class="lyrics-line" data-time="54073"> <ruby>忘<rt>わす</rt></ruby><sub>0</sub>れて <ruby>しまい<rt>しまい</rt></ruby><sub>0</sub>そうに <ruby>なる<rt>なる</rt></ruby><sub>0</sub>けど <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">似乎快要忘記了</span></p>
+<p class="lyrics-line" data-time="56765"> <ruby>通<rt>とお</rt></ruby><sub>0</sub>り <ruby>過<rt>す</rt></ruby><sub>0</sub>ぎて <ruby>き<rt>き</rt></ruby><sub>0</sub>た <ruby>何気<rt>なにげ</rt></ruby><sub>1</sub>ない <ruby>日々<rt>ひび</rt></ruby><sub>0</sub>の <ruby>中<rt>なか</rt></ruby><sub>0</sub>に <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">在那些平凡的日子中</span></p>
+<p class="lyrics-line" data-time="60444"> <ruby>僕<rt>ぼく</rt></ruby><sub>0</sub>らの <ruby>幸<rt>しあわ</rt></ruby><sub>1</sub>せは <ruby>確<rt>たし</rt></ruby><sub>1</sub>かに <ruby>あ<rt>あ</rt></ruby><sub>0</sub>った <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">我們的幸福確實存在</span></p>
+<p class="lyrics-line" data-time="63600"> <ruby>もしも<rt>もしも</rt></ruby><sub>0</sub> <ruby>明け<rt>あけ</rt></ruby><sub>1</sub>ない <ruby>夜<rt>よる</rt></ruby><sub>0</sub>の <ruby>中<rt>なか</rt></ruby><sub>0</sub>で <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">假如在永夜之中</span></p>
+<p class="lyrics-line" data-time="66076"> <ruby>一人<rt>ひとり</rt></ruby><sub>1</sub> <ruby>静<rt>しず</rt></ruby><sub>1</sub>かに <ruby>泣<rt>な</rt></ruby><sub>0</sub>いている <ruby>の<rt>の</rt></ruby><sub>0</sub>なら <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">孤單一人靜靜流淚</span></p>
+<p class="lyrics-line" data-time="69121"> <ruby>あなた<rt>あなた</rt></ruby><sub>0</sub>が <ruby>僕<rt>ぼく</rt></ruby><sub>0</sub>を <ruby>信<rt>しん</rt></ruby><sub>1</sub>じて <ruby>くれた<rt>くれた</rt></ruby><sub>0</sub>ように <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">如同你相信了我</span></p>
+<p class="lyrics-line" data-time="72328"> <ruby>次<rt>つぎ</rt></ruby><sub>1</sub>は <ruby>僕<rt>ぼく</rt></ruby><sub>0</sub>が <ruby>その<rt>その</rt></ruby><sub>0</sub> <ruby>手<rt>て</rt></ruby><sub>1</sub>を <ruby>強<rt>つよ</rt></ruby><sub>1</sub>く <ruby>握<rt>にぎ</rt></ruby><sub>1</sub>る <ruby>から<rt>から</rt></ruby><sub>0</sub> <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">下一次輪到我緊握你的手</span></p>
+<p class="lyrics-line" data-time="75969"> <ruby>傷<rt>きず</rt></ruby><sub>1</sub>つく <ruby>こと<rt>こと</rt></ruby><sub>0</sub>から <ruby>逃<rt>に</rt></ruby><sub>1</sub>げていた <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">曾經害怕受傷而逃避</span></p>
+<p class="lyrics-line" data-time="78720"> <ruby>この<rt>この</rt></ruby><sub>0</sub> <ruby>心<rt>こころ</rt></ruby><sub>0</sub>を <ruby>動<rt>うご</rt></ruby><sub>1</sub>かす <ruby>の<rt>の</rt></ruby><sub>0</sub>は <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">感動這顆心的是</span></p>
+<p class="lyrics-line" data-time="81121"> <ruby>弱<rt>よわ</rt></ruby><sub>1</sub>さを <ruby>見<rt>み</rt></ruby><sub>0</sub>せない <ruby>あなた<rt>あなた</rt></ruby><sub>0</sub>が <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">不曾顯露出軟弱的你</span></p>
+<p class="lyrics-line" data-time="83748"> <ruby>初<rt>はじ</rt></ruby><sub>1</sub>めて <ruby>見<rt>み</rt></ruby><sub>0</sub>せた <ruby>涙<rt>なみだ</rt></ruby><sub>0</sub> <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">第一次展現的淚水</span></p>
+<p class="lyrics-line" data-time="86033"> <ruby>いつか<rt>いつか</rt></ruby><sub>0</sub> <ruby>僕<rt>ぼく</rt></ruby><sub>0</sub>に <ruby>話<rt>はな</rt></ruby><sub>1</sub>して <ruby>くれた<rt>くれた</rt></ruby><sub>0</sub> <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">有一天對我說過</span></p>
+<p class="lyrics-line" data-time="88540"> <ruby>あなた<rt>あなた</rt></ruby><sub>0</sub>が <ruby>描<rt>えが</rt></ruby><sub>0</sub>いた <ruby>未来<rt>みらい</rt></ruby><sub>1</sub>の <ruby>中<rt>なか</rt></ruby><sub>0</sub>に <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">在你描繪的未來中</span></p>
+<p class="lyrics-line" data-time="91373"> <ruby>僕<rt>ぼく</rt></ruby><sub>0</sub>ら <ruby>一緒<rt>いっしょ</rt></ruby><sub>0</sub>に <ruby>いられる<rt>いられる</rt></ruby><sub>0</sub> <ruby>よう<rt>よう</rt></ruby><sub>0</sub>に <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">希望我們可以在一起</span></p>
+<p class="lyrics-line" data-time="93928"> <ruby>あなた<rt>あなた</rt></ruby><sub>0</sub>が <ruby>いる<rt>いる</rt></ruby><sub>0</sub> <ruby>ことで<rt>ことで</rt></ruby><sub>0</sub>どんな <ruby>明日<rt>あした</rt></ruby><sub>2</sub>も <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">因為有你任何明天</span></p>
+<p class="lyrics-line" data-time="96749"> <ruby>歩<rt>あゆ</rt></ruby><sub>0</sub>いて <ruby>いける<rt>いける</rt></ruby><sub>0</sub> <ruby>光<rt>ひかり</rt></ruby><sub>1</sub>に <ruby>なる<rt>なる</rt></ruby><sub>0</sub>から <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">都成為我們前行的光芒</span></p>
+<p class="lyrics-line" data-time="99368"> <ruby>星<rt>ほし</rt></ruby><sub>1</sub>が <ruby>見<rt>み</rt></ruby><sub>0</sub>えない <ruby>孤独<rt>こどく</rt></ruby><sub>0</sub>な <ruby>夜<rt>よる</rt></ruby><sub>0</sub>でも <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">即使是無法看到星星的孤獨夜晚</span></p>
+<p class="lyrics-line" data-time="102380"> <ruby>信<rt>しん</rt></ruby><sub>1</sub>じられる <ruby>僕<rt>ぼく</rt></ruby><sub>0</sub>ら <ruby>また<rt>また</rt></ruby><sub>0</sub> <ruby>ここ<rt>ここ</rt></ruby><sub>0</sub>で <ruby>笑<rt>わら</rt></ruby><sub>1</sub>える <ruby>日<rt>ひ</rt></ruby><sub>0</sub>を <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">能相信我們在這裡再次相笑的日子</span></p>
+<p class="lyrics-line" data-time="105260"> <ruby>笑<rt>わら</rt></ruby><sub>1</sub>える <ruby>日<rt>ひ</rt></ruby><sub>0</sub>を <span style="display: inline-block; margin-left: 5px; color:green; font-size: 62%;">能笑著迎接每一天</span></p>
+        <!-- Add remaining lyrics -->
+    </div>
+
+ <div class="toc">
+    <h2>Table of Contents</h2>
+    <ul>
+        <li><a href="#section1">上野発<font color="blue">の</font> 夜行列車 おりた時<font color="blue">から</font></a></li>
+        <li><a href="#section2">青森駅<font color="blue">は</font> 雪<font color="blue">の</font> 中</a></li>
+        <li><a href="#section3">北<font color="blue">へ</font>帰る 人<font color="blue">の</font>群れ<font color="blue">は</font> 誰も無口<font color="blue">で</font></a></li>
+        <li><a href="#section4">海鳴りだけ<font color="blue">を</font> きいている</a></li>
+        <li><a href="#section5">私<font color="blue">も</font> ひとり 連絡船<font color="blue">に</font>乗り</a></li>
+        <li><a href="#section6">こごえそうな鴎 見つめ 泣いていました</a></li>
+        <li><a href="#section7">ああ 津軽海峡 冬景色</a></li>
+        <li><a href="#section8">ごらん あれ<font color="blue">が</font>竜飛岬 北<font color="blue">の</font>はずれ<font color="blue">と</font></a></li>
+        <li><a href="#section9">見知らぬ人<font color="blue">が</font> 指<font color="blue">を</font>さす</a></li>
+        <li><a href="#section10">息<font color="blue">で</font>くもる 窓<font color="blue">の</font>ガラス ふいてみたけど</a></li>
+        <li><a href="#section11">はるか<font color="blue">に</font> かすみ 見えるだけ</a></li>
+        <li><a href="#section12">さよなら あなた 私<font color="blue">は</font>帰ります</a></li>
+        <li><a href="#section13">風<font color="blue">の</font>音<font color="blue">が</font> 胸<font color="blue">を</font>ゆする 泣け<font color="blue">と</font>ばかり<font color="blue">に</font></a></li>
+        <li><a href="#section14">ああ 津軽海峡 冬景色</a></li>
+    </ul>
+</div>
+
+    <div id="section1" class="section-title">上野発の 夜行列車 おりた時から</div>
+    <div id="section1-grammar" class="analysis-box">
+        <div class="subsection-title">Grammar Analysis</div>
+        <p>上野発の: 名詞「上野」+ 発 (名詞, 出發) + の (格助詞, 修飾語)。表示從上野出發的。</p>
+        <p>夜行列車: 名詞，夜行 (夜間行駛) + 列車 (火車)。</p>
+        <p>おりた時: 動詞「降りる」的過去形「おりた」+ 時 (表示時間點)。</p>
+        <p>から: 助詞，表示起點，意為「從～開始」。</p>
+        <p>から at the end of the sentence is a particle in Japanese grammar. It is commonly used in the following contexts:</p>
+        <p><strong>As a conjunctive particle:</strong></p>
+        <p>It indicates a reason or cause, often translated as "because" or "since."</p>
+        <p><em>Example:</em> 雨が降ったから、出かけませんでした。</p>
+        <p>("Because it rained, I didn’t go out.")</p>
+
+        <p><strong>As a terminal particle:</strong></p>
+        <p>It can mark the starting point of time, space, or an action, often translated as "from" or "since."</p>
+        <p>In your sentence, <strong>から</strong> is marking the starting point of an action: "From getting off the night train from Ueno."</p>
+        <p><em>上野発の 夜行列車 おりた時から:</em> "From the time I got off the night train from Ueno."</p>
+        <p>In this case, <strong>から</strong> functions as a terminal particle marking the starting point.</p>
+        <p>から at the end of the sentence is a particle in Japanese grammar. It is commonly used in the following contexts:</p>
+<p><strong>As a conjunctive particle:</strong></p>
+<p>It indicates a reason or cause, often translated as "because" or "since."</p>
+<p><em>Example:</em> 雨が降ったから、出かけませんでした。</p>
+<p>("Because it rained, I didn’t go out.")</p>
+
+<p><strong>As a terminal particle:</strong></p>
+<p>It can mark the starting point of time, space, or an action, often translated as "from" or "since."</p>
+<p>In your sentence, <strong>から</strong> is marking the starting point of an action: "From getting off the night train from Ueno."</p>
+<p><em>上野発の 夜行列車 おりた時から:</em> "From the time I got off the night train from Ueno."</p>
+<p>In this case, <strong>から</strong> functions as a terminal particle marking the starting point.</p>
+
+    </div>
+<!-- Section 1 -->
+<div id="section1" class="section-title">
+    上野発<font color="blue">の</font> 夜行列車 おりた時<font color="blue">から</font>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Grammar Analysis</div>
+    <p><strong>上野発の:</strong> 名詞「上野」+ 発 (名詞, 出發) + の (格助詞, 修飾語)。表示從上野出發的。</p>
+    <p><strong>夜行列車:</strong> 名詞，夜行 (夜間行駛) + 列車 (火車)。</p>
+    <p><strong>おりた時:</strong> 動詞「降りる」的過去形「おりた」+ 時 (名詞, 表示時間點)。</p>
+    <p><strong>から:</strong> 助詞，表示起點，意為「從～開始」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Literal Grammar Full Breakdown in Context</div>
+    <p>「上野発の」修飾「夜行列車」，表示從上野出發的火車。</p>
+    <p>「おりた時から」表示事件發生的時間點，意為「從下車的時候開始」。</p>
+    <p>整句的意思是「從上野出發的夜行列車下車後開始」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Particle Analyze</div>
+    <p><strong>の:</strong> 格助詞，用於修飾「夜行列車」，表示出發地「上野」。</p>
+    <p><strong>から:</strong> 助詞，表示動作或事件的起點「從～開始」。</p>
+</div>
+<div class="back-to-top"><a href="#top">Back to Top</a></div>
+
+<!-- Section 2 -->
+<div id="section2" class="section-title">
+    青森駅<font color="blue">は</font> 雪<font color="blue">の</font> 中
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Grammar Analysis</div>
+    <p><strong>青森駅は:</strong> 名詞「青森駅」+ 主題助詞「は」，標示句子的主題。</p>
+    <p><strong>雪の中:</strong> 名詞「雪」+ の (格助詞, 修飾語) + 中 (名詞, 表示「裡面」)。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Literal Grammar Full Breakdown in Context</div>
+    <p>主題「青森駅」描述其狀態「雪の中」。</p>
+    <p>整句的意思是「青森車站在大雪之中」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Particle Analyze</div>
+    <p><strong>は:</strong> 主題助詞，標示主語「青森駅」。</p>
+    <p><strong>の:</strong> 格助詞，修飾「中」，表示「雪之中」。</p>
+</div>
+<div class="back-to-top"><a href="#top">Back to Top</a></div>
+
+<!-- Section 3 -->
+<div id="section3" class="section-title">
+    北<font color="blue">へ</font>帰る 人<font color="blue">の</font>群れ<font color="blue">は</font> 誰も無口<font color="blue">で</font>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Grammar Analysis</div>
+    <p><strong>北へ帰る:</strong> 名詞「北」+ 助詞「へ」+ 動詞「帰る」，意為「返回北方」。</p>
+    <p><strong>人の群れは:</strong> 名詞「人」+ の (格助詞, 所屬關係) + 群れ (群體) + 主題助詞「は」。</p>
+    <p><strong>誰も無口で:</strong> 副詞「誰も」(表示「每個人」) + 形容動詞「無口」(沉默) + 助詞「で」(連用形)。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Literal Grammar Full Breakdown in Context</div>
+    <p>「北へ帰る」修飾「人の群れ」，表示這群人正在返回北方。</p>
+    <p>「誰も無口で」描述這群人的狀態，強調「所有人都沉默無語」。</p>
+    <p>整句的意思是「返回北方的人群，所有人都沉默無語」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Particle Analyze</div>
+    <p><strong>へ:</strong> 方向助詞，表示動作的方向「往北方」。</p>
+    <p><strong>の:</strong> 格助詞，表示「人」與「群れ」的所屬關係。</p>
+    <p><strong>は:</strong> 主題助詞，標示主語「人の群れ」。</p>
+    <p><strong>で:</strong> 助詞，連接動詞「無口」和後續描述。</p>
+</div>
+<div class="back-to-top"><a href="#top">Back to Top</a></div>
+
+<!-- Section 4 -->
+<div id="section4" class="section-title">
+    海鳴りだけ<font color="blue">を</font> きいている
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Grammar Analysis</div>
+    <p><strong>海鳴り:</strong> 名詞，表示「海浪聲」。</p>
+    <p><strong>だけ:</strong> 副助詞，表示「僅僅」或「只有」。</p>
+    <p><strong>を:</strong> 格助詞，標示動作的直接對象。</p>
+    <p><strong>きいている:</strong> 動詞「聞く」的連用形「きいて」+ 助動詞「いる」，表示動作正在進行。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Literal Grammar Full Breakdown in Context</div>
+    <p>「海鳴りだけを」強調「只聽見海浪聲」作為動作的對象。</p>
+    <p>「きいている」表示動作正在進行。</p>
+    <p>整句的意思是「只聽見海浪的聲音」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Particle Analyze</div>
+    <p><strong>だけ:</strong> 副助詞，限制範圍，表示「只有海浪聲」。</p>
+    <p><strong>を:</strong> 格助詞，標示動作的直接對象「海鳴り」。</p>
+</div>
+<div class="back-to-top"><a href="#top">Back to Top</a></div>
+
+<!-- Section 5 -->
+<div id="section5" class="section-title">
+    私<font color="blue">も</font> ひとり 連絡船<font color="blue">に</font>乗り
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Grammar Analysis</div>
+    <p><strong>私も:</strong> 名詞「私」+ 助詞「も」，表示「我也」。</p>
+    <p><strong>ひとり:</strong> 名詞，表示「單獨」或「一個人」。</p>
+    <p><strong>連絡船に乗り:</strong> 名詞「連絡船」+ 助詞「に」+ 動詞「乗る」的連用形「乗り」，表示「搭上連絡船」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Literal Grammar Full Breakdown in Context</div>
+    <p>「私も」表示「我也」。</p>
+    <p>「ひとり」描述狀態為「單獨」。</p>
+    <p>「連絡船に乗り」表示動作是「搭上連絡船」。</p>
+    <p>整句的意思是「我也一個人搭上了連絡船」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Particle Analyze</div>
+    <p><strong>も:</strong> 助詞，表示「也」，強調「我也參與」。</p>
+    <p><strong>に:</strong> 格助詞，表示動作的目的地「連絡船」。</p>
+</div>
+<div class="back-to-top"><a href="#top">Back to Top</a></div>
+
+<!-- Section 6 -->
+<div id="section6" class="section-title">
+    こごえそうな鴎 見つめ 泣いていました
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Grammar Analysis</div>
+    <p><strong>こごえそうな:</strong> 動詞「凍える」的未然形「こごえ」+ そう (表示「似乎」或「快要」) + な (修飾語)，修飾後續的名詞。</p>
+    <p><strong>鴎:</strong> 名詞，表示「海鷗」。</p>
+    <p><strong>見つめ:</strong> 動詞「見つめる」的連用形，表示「凝視」。</p>
+    <p><strong>泣いていました:</strong> 動詞「泣く」的連用形「泣いて」+ 助動詞「いる」的過去形式，表示「正在哭泣」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Literal Grammar Full Breakdown in Context</div>
+    <p>「こごえそうな鴎」描述「看起來快要凍僵的海鷗」。</p>
+    <p>「見つめ」表示「凝視」。</p>
+    <p>「泣いていました」描述過去持續的動作是「哭泣」。</p>
+    <p>整句的意思是「凝視著快要凍僵的海鷗，我哭泣著」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Particle Analyze</div>
+    <p>該句中無明顯使用的格助詞或助詞，主要由動詞和修飾語組成。</p>
+</div>
+<div class="back-to-top"><a href="#top">Back to Top</a></div>
+
+<!-- Section 7 -->
+<div id="section7" class="section-title">
+    ああ 津軽海峡 冬景色
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Grammar Analysis</div>
+    <p><strong>ああ:</strong> 感嘆詞，表示感慨或讚歎。</p>
+    <p><strong>津軽海峡:</strong> 名詞，表示「津輕海峽」。</p>
+    <p><strong>冬景色:</strong> 名詞，「冬」(冬天) + 「景色」(風景)，表示「冬天的景色」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Literal Grammar Full Breakdown in Context</div>
+    <p>「ああ」表達感嘆的語氣。</p>
+    <p>「津軽海峡 冬景色」描述津輕海峽的冬日風景。</p>
+    <p>整句的意思是「啊～津輕海峽的冬日景色」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Particle Analyze</div>
+    <p>該句中無使用格助詞或助詞，主要由感嘆詞和名詞構成。</p>
+</div>
+<div class="back-to-top"><a href="#top">Back to Top</a></div>
+ <div id="section8" class="section-title">
+    ごらん あれ<font color="blue">が</font>竜飛岬 北<font color="blue">の</font>はずれ<font color="blue">と</font>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Grammar Analysis</div>
+    <p><strong>ごらん:</strong> 動詞「ご覧になる」的命令形，意為「請看」。</p>
+    <p><strong>あれが:</strong> 代詞「あれ」(那個) + 主語助詞「が」，表示「那是～」。</p>
+    <p><strong>竜飛岬:</strong> 名詞，表示「竜飛岬」（龍飛岬）。</p>
+    <p><strong>北のはずれと:</strong> 名詞「北」+ の (格助詞, 所屬) + はずれ (名詞, 邊緣) + と (引用助詞)。表示「北方的盡頭」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Literal Grammar Full Breakdown in Context</div>
+    <p>「ごらん」表示「請看」。</p>
+    <p>「あれが竜飛岬」指出「那是龍飛岬」。</p>
+    <p>「北のはずれと」描述「位於北方的盡頭」。</p>
+    <p>整句的意思是「請看，那是龍飛岬，北方的盡頭」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Particle Analyze</div>
+    <p><strong>が:</strong> 主語助詞，標示主語「あれ」。</p>
+    <p><strong>の:</strong> 格助詞，修飾「はずれ」，表示「北方的」。</p>
+    <p><strong>と:</strong> 引用助詞，用於補充描述「北方的盡頭」。</p>
+</div>
+<div class="back-to-top"><a href="#top">Back to Top</a></div>
+   <div id="section9" class="section-title">
+    見知らぬ人<font color="blue">が</font> 指<font color="blue">を</font>さす
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Grammar Analysis</div>
+    <p><strong>見知らぬ:</strong> 動詞「見知らない」的文語形式，意為「陌生的」。</p>
+    <p><strong>人が:</strong> 名詞「人」+ 助詞「が」，表示主語。</p>
+    <p><strong>指をさす:</strong> 名詞「指」+ 助詞「を」+ 動詞「さす」，意為「指向」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Literal Grammar Full Breakdown in Context</div>
+    <p>「見知らぬ人」表示「陌生人」。</p>
+    <p>「指をさす」表示動作是「指向」。</p>
+    <p>整句的意思是「陌生人指著那裡」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Particle Analyze</div>
+    <p><strong>が:</strong> 主語助詞，標示主語「人」。</p>
+    <p><strong>を:</strong> 格助詞，標示動作的直接對象「指」。</p>
+</div>
+<div class="back-to-top"><a href="#top">Back to Top</a></div>
+<div id="section10" class="section-title">
+    息<font color="blue">で</font>くもる 窓<font color="blue">の</font>ガラス ふいてみたけど
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Grammar Analysis</div>
+    <p><strong>息でくもる:</strong> 名詞「息」+ 助詞「で」+ 動詞「くもる」，表示「因氣息變得模糊」。</p>
+    <p><strong>窓のガラス:</strong> 名詞「窓」+ の (格助詞, 所屬關係) + 名詞「ガラス」，表示「窗戶的玻璃」。</p>
+    <p><strong>ふいてみたけど:</strong> 動詞「ふく」的連用形「ふいて」+ 助動詞「みる」的過去形「みた」+ 接續助詞「けど」，表示「試著擦拭，但～」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Literal Grammar Full Breakdown in Context</div>
+    <p>「息でくもる」表示玻璃因氣息變模糊。</p>
+    <p>「窓のガラス」是描述主語。</p>
+    <p>「ふいてみたけど」表示「試著擦拭，但未完全成功」。</p>
+    <p>整句的意思是「窗戶的玻璃因氣息變得模糊，我試著擦拭，但～」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Particle Analyze</div>
+    <p><strong>で:</strong> 格助詞，表示原因或手段「因氣息」。</p>
+    <p><strong>の:</strong> 格助詞，修飾「ガラス」，表示「窗戶的」。</p>
+</div>
+<div class="back-to-top"><a href="#top">Back to Top</a></div>
+<div id="section11" class="section-title">
+    はるか<font color="blue">に</font> かすみ 見えるだけ
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Grammar Analysis</div>
+    <p><strong>はるかに:</strong> 副詞，表示「遙遠地」。</p>
+    <p><strong>かすみ:</strong> 名詞，表示「霧氣」或「朦朧」。</p>
+    <p><strong>見えるだけ:</strong> 動詞「見える」+ 副助詞「だけ」，表示「只看得見」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Literal Grammar Full Breakdown in Context</div>
+    <p>「はるかに」修飾「見える」，表示遙遠的狀態。</p>
+    <p>「見えるだけ」描述只看得見的狀態。</p>
+    <p>整句的意思是「只看得見遠方的霧氣」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Particle Analyze</div>
+    <p><strong>に:</strong> 格助詞，修飾動詞「見える」，表示動作的程度或範圍。</p>
+    <p><strong>だけ:</strong> 副助詞，限制範圍，表示「僅僅」。</p>
+</div>
+<div class="back-to-top"><a href="#top">Back to Top</a></div>
+<div id="section12" class="section-title">
+    さよなら あなた 私<font color="blue">は</font>帰ります
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Grammar Analysis</div>
+    <p><strong>さよなら:</strong> 感嘆詞，表示「再見」。</p>
+    <p><strong>あなた:</strong> 代詞，表示「你」。</p>
+    <p><strong>私は帰ります:</strong> 代詞「私」+ 主題助詞「は」+ 動詞「帰る」的禮貌形，表示「我要回去了」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Literal Grammar Full Breakdown in Context</div>
+    <p>「さよなら」表示「再見」的語氣。</p>
+    <p>「私は帰ります」表達「我要回去了」。</p>
+    <p>整句的意思是「再見了，你，我要回去了」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Particle Analyze</div>
+    <p><strong>は:</strong> 主題助詞，標示主語「私」。</p>
+</div>
+<div class="back-to-top"><a href="#top">Back to Top</a></div>
+<div id="section13" class="section-title">
+    風<font color="blue">の</font>音<font color="blue">が</font> 胸<font color="blue">を</font>ゆする 泣け<font color="blue">と</font>ばかり<font color="blue">に</font>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Grammar Analysis</div>
+    <p><strong>風の音が:</strong> 名詞「風」+ の (格助詞) + 名詞「音」+ 主語助詞「が」，表示「風的聲音」。</p>
+    <p><strong>胸をゆする:</strong> 名詞「胸」+ 助詞「を」+ 動詞「ゆする」，意為「搖動胸膛」。</p>
+    <p><strong>泣けとばかりに:</strong> 動詞「泣く」的可能形命令「泣け」+ 格助詞「と」+ ばかりに，表示「彷彿要哭泣般」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Literal Grammar Full Breakdown in Context</div>
+    <p>「風の音が」為主語，「胸をゆする」描述風聲對胸膛的影響。</p>
+    <p>「泣けとばかりに」形容彷彿要哭泣的情緒。</p>
+    <p>整句的意思是「風聲搖動胸膛，彷彿在催促我哭泣」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Particle Analyze</div>
+    <p><strong>の:</strong> 格助詞，表示「風」與「音」的屬性關係。</p>
+    <p><strong>が:</strong> 主語助詞，標示主語「音」。</p>
+    <p><strong>を:</strong> 格助詞，標示動作的對象「胸」。</p>
+    <p><strong>と:</strong> 格助詞，表示引用或理由。</p>
+    <p><strong>に:</strong> 格助詞，表示情緒的程度或狀態「彷彿」。</p>
+ <div class="analysis-box">
+    <div class="subsection-title">助詞「に」在句尾的解釋</div>
+    <p>在句子 <strong>泣けとばかりに</strong> 中，助詞 <strong>に</strong> 出現在句尾。這在日語中並不罕見，且具有特定的文法功能。以下是詳細說明：</p>
+
+    <h4>1. 助詞「に」在該句中的作用</h4>
+    <p>在這個句子中，<strong>に</strong> 作為格助詞，標示前述表達<strong>ばかり</strong>的副詞性功能。</p>
+    <p>短語 <strong>ばかりに</strong> 是一個固定句型，用來表達「彷彿」或「好像」，強調特定的狀態或情況。</p>
+    <p>結合<strong>泣けと</strong>（命令形的「哭」），它傳遞出一種比喻或間接的意思：<em>「彷彿命令要哭」</em>。</p>
+
+    <h4>2. 助詞「に」在句尾的功能</h4>
+    <p>助詞 <strong>に</strong> 在不同語境下具有多種功能。以下是主要的功能：</p>
+
+    <h5>A. 副詞化標示</h5>
+    <p><strong>に</strong> 可以將片語轉化為副詞子句，修飾句中的主要動詞。</p>
+    <p><strong>範例：</strong></p>
+    <blockquote>
+        <p>風が強くなるにつれて、寒くなった。</p>
+        <p><em>（隨著風越來越強，天氣變得越來越冷。）</em></p>
+    </blockquote>
+    <p>這裡的<strong>につれて</strong>表示變化，<strong>に</strong> 表示關聯性。</p>
+
+    <h5>B. 表達目的或條件</h5>
+    <p><strong>に</strong> 可以用來表示目的、理由或條件，常出現在動詞或固定句型中。</p>
+    <p><strong>範例：</strong></p>
+    <blockquote>
+        <p>日本に行きたい。</p>
+        <p><em>（我想去日本。）</em></p>
+    </blockquote>
+    <p>此處的<strong>に</strong> 表示方向或目的。</p>
+
+    <h5>C. 固定表達的一部分</h5>
+    <p>在像 <strong>ばかりに</strong> 這樣的結構中，<strong>に</strong> 是固定表達的一部分，為句子增添細膩的語意。</p>
+    <p><strong>範例：</strong></p>
+    <blockquote>
+        <p>彼は急いだばかりに失敗した。</p>
+        <p><em>（他因為太匆忙而失敗了。）</em></p>
+    </blockquote>
+    <p>此處<strong>ばかりに</strong> 表示遺憾的因果關係。</p>
+
+    <h4>3. 為什麼「に」是助詞</h4>
+    <p>在 <strong>泣けとばかりに</strong> 中，助詞 <strong>に</strong>：</p>
+    <ul>
+        <li>標示<strong>ばかり</strong> 的副詞性功能，表達方式或情況。</li>
+        <li>將<strong>泣けとばかり</strong>（彷彿命令哭）這種比喻意義與整句子連接起來。</li>
+    </ul>
+    <p>這種用法強調比喻或間接的描述，而非直接命令。</p>
+
+    <h4>4. 助詞「に」在句尾的範例</h4>
+    <h5>A. 比喻或間接表達</h5>
+    <p><strong>範例：</strong></p>
+    <blockquote>
+        <p>彼女は何も言えないとばかりに黙っていた。</p>
+        <p><em>（她保持沉默，好像在說她無法說話。）</em></p>
+    </blockquote>
+    <p>這裡的<strong>とばかりに</strong> 暗示她的沉默傳達了一種比喻性的「訊息」。</p>
+
+    <h5>B. 副詞化修飾</h5>
+    <p><strong>範例：</strong></p>
+    <blockquote>
+        <p>彼は助けるつもりで近づいたのに、逆効果だった。</p>
+        <p><em>（他打算幫忙，但結果適得其反。）</em></p>
+    </blockquote>
+    <p><strong>に</strong> 將<strong>つもりで</strong> 標記為副詞子句，用以解釋意圖。</p>
+
+    <h5>C. 表達目的或理由</h5>
+    <p><strong>範例：</strong></p>
+    <blockquote>
+        <p>公園に行くために準備した。</p>
+        <p><em>（我準備好要去公園了。）</em></p>
+    </blockquote>
+    <p><strong>に</strong> 表示目的。</p>
+
+    <h4>總結</h4>
+    <p>助詞 <strong>に</strong> 在 <strong>泣けとばかりに</strong> 中：</p>
+    <ul>
+        <li>作為固定表達 <strong>ばかりに</strong> 的一部分，將比喻性或描述性的副詞子句與整個句子連接起來。</li>
+        <li>強調方式或情況，通常帶有比喻或情感上的微妙語氣。</li>
+    </ul>
+    <p>這種結構在日語的文學或詩歌中很常見，為表達增添深度和細膩感。</p>
+ </div>
+<div class="analysis-box">
+    <div class="subsection-title">解釋「泣けとばかりに」的組成成分</div>
+    <h4>1. 泣け 的原型是什麼？</h4>
+    <p>泣け 是動詞 <b>泣く</b>（哭）的命令形。</p>
+    <p>泣け 用於直接命令，意思是「哭吧！」。</p>
+    <p>五段動詞（Group 1）的變化模式如下：</p>
+    <ul>
+        <li>泣く → 命令形：泣け</li>
+        <li>其他形式：</li>
+        <ul>
+            <li>泣きます（禮貌現在式）</li>
+            <li>泣いた（過去式）</li>
+            <li>泣かない（否定式）</li>
+        </ul>
+    </ul>
+
+    <h4>2. 助詞「と」的所有用法是什麼？</h4>
+    <p>助詞「と」根據語境有多種用途，以下是其主要功能：</p>
+    <ol>
+        <li><b>引號標記</b>：用於表示直接或間接引述。</li>
+        <p>例子：</p>
+        <ul>
+            <li>彼は「行く」と言った。<br>（他說：「我要去。」）</li>
+            <li>彼が行くと言った。<br>（他說他要去。）</li>
+        </ul>
+
+        <li><b>條件（如果/當）</b>：用於條件句中，通常翻譯為「如果」或「當」。</li>
+        <p>例子：</p>
+        <ul>
+            <li>ドアを開けると、犬がいた。<br>（當我打開門時，有一隻狗。）</li>
+        </ul>
+
+        <li><b>列舉/枚舉</b>：用於列舉項目或選項。</li>
+        <p>例子：</p>
+        <ul>
+            <li>リンゴとバナナを買った。<br>（我買了蘋果和香蕉。）</li>
+        </ul>
+
+        <li><b>同時或伴隨</b>：表示某事與其他事同時發生。</li>
+        <p>例子：</p>
+        <ul>
+            <li>彼と一緒に行く。<br>（我將和他一起去。）</li>
+        </ul>
+
+        <li><b>結果或後果</b>：用於描述自然或預期的結果。</li>
+        <p>例子：</p>
+        <ul>
+            <li>ボタンを押すと、ドアが開く。<br>（如果按下按鈕，門就會打開。）</li>
+        </ul>
+
+        <li><b>固定表達</b>：出現在慣用語如「とばかりに」、「という」等中。</li>
+        <p>例子：</p>
+        <ul>
+            <li>在「泣けとばかりに」中，「と」用作引號標記，將「泣け」與比喻性的「ばかりに」連接起來，形成「彷彿在說『哭吧！』」的意思。</li>
+        </ul>
+    </ol>
+
+    <h4>3. ばかり 是什麼？</h4>
+    <p>「ばかり」根據使用情況有多種意思，通常表達限制、近似或強調。以下是其主要用法：</p>
+    <ol>
+        <li><b>表達「只有」或「只是」</b>：表示某事僅限於某範圍。</li>
+        <p>例子：</p>
+        <ul>
+            <li>彼は食べてばかりいる。<br>（他只是吃飯，什麼也不做。）</li>
+        </ul>
+
+        <li><b>表示「大約」</b>：描述大致的數量或範圍。</li>
+        <p>例子：</p>
+        <ul>
+            <li>千円ばかりお金を貸してください。<br>（請借我大約一千日元。）</li>
+        </ul>
+
+        <li><b>固定表達：とばかりに</b>：「とばかりに」是一個固定結構，意思是「彷彿在說」或「彷彿」。</li>
+        <p>例子：</p>
+        <ul>
+            <li>彼女は「いいでしょう」とばかりにうなずいた。<br>（她點頭彷彿在說「這可以吧。」）</li>
+        </ul>
+    </ol>
+
+    <h4>4. 泣けとばかりに 的分解</h4>
+    <p>
+        <b>泣け</b>：泣く的命令形，意思是「哭吧！」。<br>
+        <b>と</b>：引號助詞，將「泣け」連接到後續語句。<br>
+        <b>ばかりに</b>：固定表達，意思是「彷彿在說」，用於強調比喻或間接的狀態。
+    </p>
+    <p>翻譯：「彷彿命令哭泣」或「彷彿在說『哭吧！』」。</p>
+
+    <h4>總結</h4>
+    <p>
+        泣け 是 <b>泣く</b>（哭）的命令形。<br>
+        と 在此語境中作為引號助詞，將命令「泣け」連接到比喻短語「ばかりに」。<br>
+        ばかりに 是一種固定表達，用於傳達比喻或間接的意思，通常帶有「彷彿」或「似乎」的感覺。
+    </p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">為什麼在「泣けとばかりに」中使用助詞「と」作為引號助詞，而不是「て」？</div>
+    <h4>1. 「と」與「て」的主要區別</h4>
+    <p>「と」和「て」都是連接助詞，但它們的功能完全不同：</p>
+    <ul>
+        <li><b>A. 「と」作為引號標記</b><br>
+        「と」明確用於引用或參照某人所說、所想或所暗示的內容。<br>
+        使用場景：
+        <ul>
+            <li>直接引用或轉述某人的陳述、想法或命令。</li>
+            <li>重點在於所說或所暗示的內容。</li>
+        </ul>
+        </li>
+        <li><b>B. 「て」作為連接詞</b><br>
+        「て」連接動詞、形容詞或子句，用於表示順序、原因或狀態。<br>
+        使用場景：
+        <ul>
+            <li>連接動作或狀態（例如，順序動作或因果關係）。</li>
+            <li>重點在於動作的連續性或結果。</li>
+        </ul>
+        </li>
+    </ul>
+
+    <h4>2. 為什麼「と」在這裡適用</h4>
+    <p>在「泣けとばかりに」中，「と」作為引號標記，連接「泣け」（命令形，「哭吧！」）與比喻性含義「ばかりに」（「彷彿在說」）。</p>
+    <p>此結構依賴於引用一個隱含的信息或命令（「哭吧！」）的概念。重點在於所說或所暗示的內容，而非動作的連續性。</p>
+    <p><b>「と」的例子（引用）：</b></p>
+    <ul>
+        <li>彼は「行け」と命令した。<br>（他命令說：「去吧！」）</li>
+    </ul>
+    <p>在「泣けとばかりに」中，我們並非展示動作的連續性，而是引用此表達背後的比喻意圖。</p>
+
+    <h4>3. 為什麼「て」不適用</h4>
+    <p>使用「て」代替「と」會暗示動作的連續性，而這並不是該短語的本意。</p>
+    <p>若使用「泣けてばかりに」，可能會導致以下誤解：</p>
+    <ul>
+        <li>「て」會暗示「哭」是導致另一個動作的原因。</li>
+        <li>它會將重點從引用和比喻意圖轉移到動作的連續性上。</li>
+    </ul>
+
+    <h4>4. 「と」與「て」在上下文中的比較</h4>
+    <ul>
+        <li><b>使用「と」（正確用法）</b><br>
+        泣けとばかりに<br>
+        （彷彿在說：「哭吧！」）<br>
+        重點在於暗示命令或訊息的內容。
+        </li>
+        <li><b>使用「て」（不正確或不合適）</b><br>
+        泣けてばかりに<br>
+        （接著哭……）<br>
+        這將錯誤地暗示一種順序或因果關係，失去了原本的比喻意味。
+        </li>
+    </ul>
+
+    <h4>5. 用例對比來突出區別</h4>
+    <ul>
+        <li><b>A. 使用「と」進行引用</b><br>
+        彼女は「遅いよ」と怒った。<br>
+        （她生氣地說：「你遲到了。」）<br>
+        → 「と」標記引用的訊息。<br><br>
+        彼女は泣けとばかりに私を見た。<br>
+        （她看著我，彷彿在說：「哭吧！」）<br>
+        → 使用「と」是因為重點在於引用隱含的訊息。
+        </li>
+        <li><b>B. 使用「て」表動作連續</b><br>
+        彼女は泣けて私も悲しくなった。<br>
+        （她哭了，然後我也變得悲傷。）<br>
+        → 「て」連接兩個動作，表示連續性或因果關係。
+        </li>
+    </ul>
+
+    <h4>6. 總結</h4>
+    <p>「と」是此處的正確助詞，因為它用於引用或隱含意圖。<br>
+    「て」會錯誤地暗示順序或因果關係，不適合表達「泣けとばかりに」的比喻意味。</p>
+</div>
+
+
+</div>
+<div class="back-to-top"><a href="#top">Back to Top</a></div>
+<div id="section14" class="section-title">
+    ああ 津軽海峡 冬景色
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Grammar Analysis</div>
+    <p><strong>ああ:</strong> 感嘆詞，表示感慨或讚歎。</p>
+    <p><strong>津軽海峡:</strong> 名詞，表示「津輕海峽」。</p>
+    <p><strong>冬景色:</strong> 名詞，「冬」(冬天) + 「景色」(風景)，表示「冬天的景色」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Literal Grammar Full Breakdown in Context</div>
+    <p>「ああ」表達感嘆的語氣。</p>
+    <p>「津軽海峡 冬景色」描述津輕海峽的冬日風景。</p>
+    <p>整句的意思是「啊～津輕海峽的冬日景色」。</p>
+</div>
+<div class="analysis-box">
+    <div class="subsection-title">Particle Analyze</div>
+    <p>該句中無使用格助詞或助詞，主要由感嘆詞和名詞構成。</p>
+</div>
+<div class="back-to-top"><a href="#top">Back to Top</a></div>
+
+    
+    <button id="pauseButton">Pause</button>
+    <script>
+        const audioPlayer = document.getElementById('audioPlayer');
+        const lines = document.querySelectorAll('.lyrics-line');
+        const playbackRateSelector = document.getElementById('playback-rate');
+        let currentLine = null;
+
+        // Ensure the audio player is ready before interacting with it
+        audioPlayer.addEventListener('canplaythrough', () => {
+            console.log("Audio file is ready to play.");
+        });
+
+        // Highlight the active lyric based on the current time
+        audioPlayer.addEventListener('timeupdate', () => {
+            const currentTime = audioPlayer.currentTime * 1000; // Convert to milliseconds
+            highlightLyric(currentTime);
+        });
+
+        function highlightLyric(currentTime) {
+            let activeLine = null;
+
+            lines.forEach(line => {
+                const startTime = parseInt(line.getAttribute('data-time'), 10);
+                const nextLine = line.nextElementSibling;
+                const endTime = nextLine ? parseInt(nextLine.getAttribute('data-time'), 10) : Number.MAX_SAFE_INTEGER;
+
+                if (currentTime >= startTime && currentTime < endTime) {
+                    activeLine = line;
+                }
+            });
+
+            if (activeLine && activeLine !== currentLine) {
+                if (currentLine) currentLine.classList.remove('active-line');
+                activeLine.classList.add('active-line');
+                currentLine = activeLine;
+            }
+        }
+
+        // Seek to specific time when a line is clicked
+        lines.forEach(line => {
+            line.addEventListener('click', function () {
+                const time = parseInt(this.getAttribute('data-time'), 10);
+                audioPlayer.currentTime = time / 1000; // Convert milliseconds to seconds
+                audioPlayer.play();
+            });
+        });
+
+        // Pause the audio when the button is clicked
+        document.getElementById('pauseButton').addEventListener('click', () => {
+            audioPlayer.pause();
+        });
+
+        // Update playback speed when the user changes the dropdown
+        playbackRateSelector.addEventListener('change', () => {
+            const selectedSpeed = parseFloat(playbackRateSelector.value);
+            audioPlayer.playbackRate = selectedSpeed;
+        });
+    </script>
+</body>
+</html>
